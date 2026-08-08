@@ -2,6 +2,14 @@
   "name": "twolang-lab",
   "version": "0.1.0",
   "private": true,
+  "description": "Python & Java, in depth — every topic actually executed, real recorded output, interview/industry notes, a concept map, and a Python↔Java compare view.",
+  "author": "Sepuri Sai Krishna <https://github.com/SEPURI-SAI-KRISHNA>",
+  "license": "MIT",
+  "homepage": "https://twolang-lab.pages.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SEPURI-SAI-KRISHNA/twolang-lab.git"
+  },
   "scripts": {
     "dev": "node scripts/build-content.mjs && next dev",
     "build": "node scripts/build-content.mjs && next build",

@@ -1,0 +1,26 @@
+name: Content correction
+description: Something in a topic's explanation, code, or recorded output looks wrong
+labels: ["content", "correction"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Which topic?
+      description: Link to the page, or the notebook path (e.g. python/04_dict_set_mutation_during_iteration.ipynb)
+      placeholder: https://twolang-lab.pages.dev/python/...
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong?
+      description: Be specific — a wrong claim, an output that doesn't match what you got running it yourself, a misleading explanation, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: What you actually observed (if you re-ran it)
+      description: Every example in this project is meant to be real, executed output. If you got a different result running the same code, paste it here — that's exactly the kind of report this project cares about most.
+    validations:
+      required: false

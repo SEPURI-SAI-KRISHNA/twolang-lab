@@ -1,0 +1,21 @@
+name: Topic suggestion
+description: Suggest a Python or Java feature/gotcha this project should cover
+labels: ["content", "suggestion"]
+body:
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - Python
+        - Java
+        - Both / comparative
+    validations:
+      required: true
+  - type: textarea
+    id: topic
+    attributes:
+      label: What should be covered?
+      description: What's the feature or gotcha, and why does it belong in a "not even most LLM-written code gets this right" list?
+    validations:
+      required: true
