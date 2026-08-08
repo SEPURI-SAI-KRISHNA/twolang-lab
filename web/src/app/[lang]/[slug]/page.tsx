@@ -1,15 +1,61 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { getAllTopicParams, getTopic, findAdjacent, getItemMeta } from "@/lib/content";
 import { CellView } from "@/components/CellView";
 import { Markdown } from "@/components/Markdown";
-import type { Language } from "@/lib/types";
+import type { Cell, Language } from "@/lib/types";
 
 export function generateStaticParams() {
   return getAllTopicParams();
 }
 
 export const dynamicParams = false;
+
+function firstMarkdownExcerpt(cells: Cell[]): string | null {
+  const md = cells.find((c) => c.type === "markdown");
+  if (!md || md.type !== "markdown") return null;
+  const withoutTitle = md.source.replace(/^#[^\n]*\n?/, "").trim();
+  const firstBlock = withoutTitle.split("\n\n")[0];
+  const plain = firstBlock
+    .split("\n")
+    .map((line) => line.replace(/^\s*[-*]\s+|^\s*\d+\.\s+/, "").trim())
+    .filter(Boolean)
+    .join(" ")
+    .replace(/[`*_#>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!plain) return null;
+  return plain.length > 200 ? plain.slice(0, 199).trimEnd() + "…" : plain;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; slug: string }>;
+}): Promise<Metadata> {
+  const { lang, slug } = await params;
+  if (lang !== "python" && lang !== "java") return {};
+
+  let topic;
+  try {
+    topic = getTopic(lang as Language, slug);
+  } catch {
+    return {};
+  }
+
+  const langLabel = lang === "python" ? "Python" : "Java";
+  const description =
+    firstMarkdownExcerpt(topic.cells) ??
+    `${topic.title} — ${langLabel}, with real executed code and recorded output.`;
+
+  return {
+    title: `${topic.title} (${langLabel})`,
+    description,
+    openGraph: { title: `${topic.title} (${langLabel})`, description },
+    twitter: { title: `${topic.title} (${langLabel})`, description },
+  };
+}
 
 const TIER_LABEL: Record<string, string> = {
   T1: "T1 · high-leverage",

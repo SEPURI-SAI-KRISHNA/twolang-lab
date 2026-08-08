@@ -1,9 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getComparePairs, getTopic } from "@/lib/content";
 import { Markdown } from "@/components/Markdown";
 import { CodeBlock } from "@/components/CodeBlock";
 import { OutputBlocks } from "@/components/OutputBlock";
 import type { Cell, Language, TopicRef } from "@/lib/types";
+
+export const metadata: Metadata = {
+  title: "Python ↔ Java, side by side",
+  description:
+    "Curated pairs where Python and Java solve the same underlying problem in genuinely comparable ways, shown with real executed code and real output from both.",
+};
 
 function firstMarkdown(cells: Cell[]): string | null {
   const md = cells.find((c) => c.type === "markdown");
