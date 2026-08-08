@@ -1,0 +1,801 @@
+{
+  "python": [
+    {
+      "letter": "A",
+      "name": "Object model, identity & memory",
+      "heading": "A. Object model, identity & memory",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`is` vs `==`, small-int cache (-5..256), string interning rules and when they silently stop applying",
+          "status": "done",
+          "slug": "01_identity_smallint_string_interning",
+          "title": "`is` vs `==`, the small-int cache, and string interning"
+        },
+        {
+          "tier": "T1",
+          "text": "mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`__slots__`: memory savings, what you lose (no `__dict__`, no multiple inheritance of slotted classes without care)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "reference counting + generational cyclic GC (`gc` module, generations, thresholds)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "weak references (`weakref`) and why caches/observers use them",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`sys.getsizeof` and real object overhead (header bytes, why an empty list isn't 0 bytes)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`id()` reuse after garbage collection — the classic \"why do two different objects have the same id\" trap",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "B",
+      "name": "Iteration & generators",
+      "heading": "B. Iteration & generators",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`yield from`, delegation, and generator `send()` / `throw()` / `close()`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`itertools` deep-dive: `islice`, `tee`, `groupby` (needs sorted input!), `chain`, `accumulate`, `pairwise`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "PEP 479: `StopIteration` raised inside a generator becomes `RuntimeError`, not silent stop",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "async generators / `__aiter__`/`__anext__` vs regular generators",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "C",
+      "name": "Functions & closures",
+      "heading": "C. Functions & closures",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "late-binding closures — the classic loop-variable-capture bug in list-of-lambdas",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "positional-only (`/`) and keyword-only (`*`) parameters (PEP 570)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`*args`/`**kwargs` unpacking edge cases, argument-order rules",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`functools.wraps`, decorators that lose metadata without it, decorators-with-arguments (double nesting)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`functools.lru_cache`/`cache`, `singledispatch`, `partial`, `reduce`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`nonlocal` vs `global`, function objects carrying their own `__dict__`/attributes",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "decorator stacking order vs application order (bottom-up apply, top-down execute)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "D",
+      "name": "Classes & OOP internals",
+      "heading": "D. Classes & OOP internals",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`@property`, `@staticmethod`, `@classmethod` — and the descriptor protocol underneath all three",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`__eq__`/`__hash__` contract — why overriding one without the other breaks sets/dicts",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`__repr__` vs `__str__`, and why every class should define `__repr__`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "context managers: `__enter__`/`__exit__`, `contextlib.contextmanager`, `ExitStack`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "dataclasses: `field(default_factory=...)`, `__post_init__`, `frozen=True`, generated `__eq__`/`__order__`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "MRO / C3 linearization, cooperative `super()` in multiple inheritance (diamond problem)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`__getattr__` vs `__getattribute__` vs `__setattr__`, attribute lookup order",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "abstract base classes (`abc.ABC`, `@abstractmethod`), `__subclasshook__` / virtual subclassing",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "metaclasses: `type()` as a class factory, custom `__new__` on a metaclass, `__init_subclass__` as the lightweight alternative",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`__class_getitem__` (what makes `list[int]` work at runtime)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "E",
+      "name": "Typing & modern syntax",
+      "heading": "E. Typing & modern syntax",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "walrus operator `:=` and where it actually improves code",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`match`/`case` structural pattern matching (PEP 634), including guard clauses and class patterns",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "f-string `=` debug specifier and the format-spec mini-language",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`Protocol` (structural typing, PEP 544) vs ABC (nominal typing)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`TypedDict`, `Literal`, `overload`, `NewType`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "generics: legacy `TypeVar`/`Generic` vs PEP 695 syntax (`class Foo[T]:`, Python 3.12+)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "float precision (`0.1 + 0.2 != 0.3`) and when to reach for `Decimal`/`Fraction`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "dict insertion-order guarantee (language spec since 3.7, not an implementation accident)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "F",
+      "name": "Concurrency & parallelism",
+      "heading": "F. Concurrency & parallelism",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "what the GIL actually protects (bytecode-level atomicity) and what it doesn't (compound operations like `x += 1`)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "threading vs multiprocessing vs asyncio — when each one actually helps given the GIL",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "asyncio: event loop, `Task` vs coroutine object, `gather` vs `wait`, cancellation",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`concurrent.futures` (ThreadPoolExecutor/ProcessPoolExecutor)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "PEP 703 free-threaded CPython (3.13+, GIL-optional build) — what changes",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "G",
+      "name": "Error handling",
+      "heading": "G. Error handling",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "exception chaining: `raise X from Y`, `__cause__` vs implicit `__context__`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`try`/`except`/`else`/`finally` — what `else` is actually for, `finally` overriding a `return`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "exception groups & `except*` (PEP 654, Python 3.11)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "custom exception hierarchies, catching by base class deliberately",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "H",
+      "name": "Imports & packaging",
+      "heading": "H. Imports & packaging",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`sys.modules` as the import cache, why circular imports fail the way they do",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`__all__`, namespace packages, relative vs absolute imports",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`importlib` machinery — finders, loaders, and what `import` desugars to",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "I",
+      "name": "CPython internals",
+      "heading": "I. CPython internals",
+      "items": [
+        {
+          "tier": "T2",
+          "text": "`dis` module — reading bytecode for a function, why some \"equivalent\" code is faster",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "frame objects, `sys._getframe`, how tracebacks are actually built",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "peephole/constant-folding optimizations, why `is` \"works\" on small literals but you shouldn't rely on it",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "J",
+      "name": "Stdlib gems",
+      "heading": "J. Stdlib gems",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`collections`: `Counter`, `defaultdict`, `deque` (O(1) both ends vs list's O(n) `insert(0,...)`), `ChainMap`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`enum`: `auto()`, `Flag` (bitwise combos), `StrEnum`/`IntEnum`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`functools.cached_property` vs `property` vs plain attribute",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`bisect` and `heapq` for the algorithms people hand-roll unnecessarily",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`pathlib` vs `os.path`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`contextvars` (what actually backs async-safe \"thread-local\"-like state)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`array` module vs `list` (packed C types, memory)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    }
+  ],
+  "java": [
+    {
+      "letter": "A",
+      "name": "Object model, identity & memory",
+      "heading": "A. Object model, identity & memory",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`==` vs `.equals()`, the `String` pool and `.intern()`",
+          "status": "done",
+          "slug": "01_equals_vs_eq_string_pool",
+          "title": "`==` vs `.equals()`, and the String constant pool"
+        },
+        {
+          "tier": "T1",
+          "text": "`Integer` autoboxing cache (-128..127) — the `==` gotcha with boxed types",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`hashCode`/`equals` contract, `Objects.hash`/`Objects.equals`, what breaks in a `HashMap` if you violate it",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`final` vs true immutability, \"effectively final\" for lambda capture",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "defensive copying, why `clone()` is mostly a mistake, copy constructors as the idiom",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "object header overhead (JOL-style), why a `Boolean` isn't 1 bit",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "B",
+      "name": "Generics",
+      "heading": "B. Generics",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "type erasure — why you can't do `new T[]` or `instanceof List<String>`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "bounded wildcards, PECS (\"producer extends, consumer super\")",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "unchecked warnings, heap pollution with varargs + generics",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "generic method type inference edge cases (target typing)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "C",
+      "name": "Collections framework",
+      "heading": "C. Collections framework",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`Comparable` vs `Comparator`, `Comparator.comparing(...).thenComparing(...)` chains",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`HashMap` vs `LinkedHashMap` (access-order mode!) vs `TreeMap` ordering guarantees",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`Collectors`: `groupingBy`, `partitioningBy`, `teeing`, `toUnmodifiableList`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`EnumMap`/`EnumSet` — why they're meaningfully faster than generic collections for enum keys",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "D",
+      "name": "Streams & functional interfaces",
+      "heading": "D. Streams & functional interfaces",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "stream laziness — nothing runs until a terminal operation, short-circuiting with `findFirst`/`anyMatch`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`Optional` — `orElse` (always evaluated) vs `orElseGet` (lazy), and why `Optional` fields are an anti-pattern",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "method references, all four kinds (static, bound instance, unbound instance, constructor)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "functional interface composition: `Function.andThen`/`compose`, `Predicate.and`/`or`/`negate`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "parallel streams: common `ForkJoinPool`, when it helps vs silently hurts, ordering pitfalls",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "stateful lambdas in streams (mutating external state) and why it silently breaks under parallel",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "E",
+      "name": "Concurrency",
+      "heading": "E. Concurrency",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`synchronized` (intrinsic locks), `volatile` — visibility vs atomicity (why `volatile int` doesn't fix `count++`)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "virtual threads (Project Loom, Java 21) vs platform threads — what actually changes",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`CompletableFuture` chaining (`thenApply`/`thenCompose`/`thenCombine`), sync vs async variants",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`ThreadLocal` and the classic thread-pool memory leak",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "atomic classes (`AtomicInteger`, CAS) vs synchronized for simple counters",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "Java Memory Model happens-before relationships (what actually guarantees visibility across threads)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "F",
+      "name": "Exceptions",
+      "heading": "F. Exceptions",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "checked vs unchecked exceptions — the actual compiler-enforced difference",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "try-with-resources, `AutoCloseable`, suppressed exceptions",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`finally` silently swallowing a `return`/exception from `try` (the gotcha, deliberately shown)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "exception chaining via `initCause`/constructor, preserving root cause across layers",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "G",
+      "name": "Modern language features (8 → 21)",
+      "heading": "G. Modern language features (8 → 21)",
+      "items": [
+        {
+          "tier": "T1",
+          "text": "`var` local type inference — where it helps vs hurts readability",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "switch expressions + pattern matching for switch, `sealed` classes/interfaces (Java 17/21) working together",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "text blocks (`\"\"\"`), record patterns / deconstruction (Java 21)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "`instanceof` pattern matching (no more manual cast)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "helpful NullPointerException messages (Java 14+) — reading them to pinpoint the null in a chain",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "H",
+      "name": "JVM internals",
+      "heading": "H. JVM internals",
+      "items": [
+        {
+          "tier": "T2",
+          "text": "bytecode basics via `javap -c` — seeing what a for-loop / autobox / lambda actually compiles to",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "class loading & classloader hierarchy (bootstrap/platform/app)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "JIT tiers, escape analysis / scalar replacement (stack-allocating objects that don't escape)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "lambda desugaring via `invokedynamic` (why lambdas aren't just anonymous classes under the hood)",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "GC generational hypothesis, young/old gen, brief G1 vs ZGC contrast",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    },
+    {
+      "letter": "I",
+      "name": "Modules & misc stdlib",
+      "heading": "I. Modules & misc stdlib",
+      "items": [
+        {
+          "tier": "T2",
+          "text": "JPMS basics (`module-info.java`, classpath vs modulepath) — enough to read a modular project",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T1",
+          "text": "`java.time` (`Instant`, `LocalDate`, `Duration`, `Period`) vs legacy `Date`/`Calendar`",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "static/instance initializer blocks — actual execution order with inheritance",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T2",
+          "text": "nested vs inner vs local vs anonymous classes — which ones capture an enclosing instance",
+          "status": "todo",
+          "slug": null
+        },
+        {
+          "tier": "T3",
+          "text": "`String` concatenation compiler rewriting (`StringBuilder` insertion, `invokedynamic` on newer javac)",
+          "status": "todo",
+          "slug": null
+        }
+      ]
+    }
+  ]
+}

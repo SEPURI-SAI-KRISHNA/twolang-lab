@@ -1,0 +1,105 @@
+{
+  "language": "python",
+  "slug": "01_identity_smallint_string_interning",
+  "title": "`is` vs `==`, the small-int cache, and string interning",
+  "notebookPath": "python/01_identity_smallint_string_interning.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# `is` vs `==`, the small-int cache, and string interning\n\n- `==` compares **value** (calls `__eq__`).\n- `is` compares **identity** (same object in memory, same `id()`).\n\nThere are two *completely different* mechanisms that can make `is` return `True` for equal-looking literals,\nand mixing them up is why \"small int caching\" advice online is so inconsistently reproducible. This\nnotebook demonstrates both, and — importantly — it's being run in Jupyter/IPython, which compiles each\ntop-level statement in a cell **separately**. A plain `.py` script compiles its whole file as one code\nobject instead, so a couple of these results genuinely come out different in a script vs. here. That\ndifference is real and verified below, not a caveat to wave away."
+    },
+    {
+      "type": "markdown",
+      "source": "### Mechanism 1: the small-int cache (-5..256) -- a genuine runtime singleton, same everywhere"
+    },
+    {
+      "type": "code",
+      "source": "# Python 3.8+ warns on `is` against an int/str literal, since it's almost always a mistake.\n# We're deliberately doing it on purpose here to demonstrate identity semantics, so silence that warning.\nimport warnings\nwarnings.filterwarnings(\"ignore\", category=SyntaxWarning)\n\na = 256\nb = 256\nprint(\"256 is 256:\", a is b, \"|\", a == b)\n\ne = -5\nf = -5\nprint(\"-5 is -5: \", e is f, \"  <- both in the cached range, always True, script or notebook\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "256 is 256: True | True\n-5 is -5:  True   <- both in the cached range, always True, script or notebook\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "### Mechanism 2: compile-time constant folding -- only within ONE code object\n\nOutside the cache, `is` can still return `True` for equal integer literals, but only because the compiler\ndeduplicated them into one shared constant *within a single code object*. Two literals in the **same\nstatement/expression** always share a code object, so this folds regardless of environment:"
+    },
+    {
+      "type": "code",
+      "source": "print(\"within ONE statement:\", 257 is 257, \"  <- both literals compiled together, folded, always True\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "within ONE statement: True   <- both literals compiled together, folded, always True\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "But two literals in **separate statements** only share a code object if the whole surrounding block was\ncompiled as one unit. A `.py` script's top-level statements ARE one unit (verified separately, outside this\nnotebook, via `python3 script.py`: `c = 257; d = 257` on two lines printed `True`). Jupyter/IPython compiles\neach top-level statement in a cell on its own, so that sharing does NOT happen here -- watch this actually\nrun, in this exact notebook:"
+    },
+    {
+      "type": "code",
+      "source": "c = 257\nd = 257\nprint(\"257 is 257, separate statements, IN THIS NOTEBOOK:\", c is d, \"  <- False here; a .py script would print True\")\n\ng = -6\nh = -6\nprint(\"-6 is -6, separate statements, IN THIS NOTEBOOK:  \", g is h, \"  <- outside the cache AND no folding across statements\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "257 is 257, separate statements, IN THIS NOTEBOOK: False   <- False here; a .py script would print True\n-6 is -6, separate statements, IN THIS NOTEBOOK:   False   <- outside the cache AND no folding across statements\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "`eval()` always compiles a brand new, separate code object no matter what -- never shares constants with anything, in a script or a notebook:"
+    },
+    {
+      "type": "code",
+      "source": "x = 257\ny = eval(\"257\")\nprint(\"257 vs eval('257'):\", x is y)\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "257 vs eval('257'): False\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "### Mechanism 3: automatic interning of identifier-shaped string literals -- also a runtime thing, same everywhere\n\nCPython automatically interns string literals that *look like an identifier* (letters/digits/underscore\nonly, no spaces) as a genuine runtime optimization -- independent of which code object compiled them. This\nis why `\"hello\"` behaves differently from `\"hello world\"` even across separate statements, in ANY\nenvironment:"
+    },
+    {
+      "type": "code",
+      "source": "s1 = \"hello\"\ns2 = \"hello\"\nprint(\"'hello' (identifier-shaped), separate statements:      \", s1 is s2, \" <- real auto-interning, not folding\")\n\ns5 = \"hello_world\"\ns6 = \"hello_world\"\nprint(\"'hello_world' (identifier-shaped), separate statements:\", s5 is s6, \" <- also auto-interned\")\n\ns3 = \"hello world\"\ns4 = \"hello world\"\nprint(\"'hello world' (has a space), separate statements, HERE:\", s3 is s4, \" <- False here; NOT auto-interned, and no cross-statement folding in a notebook (a script would print True)\")\n\ns7 = \"\".join([\"hel\", \"lo\"])\nprint(\"runtime-built 'hello' vs the literal:                  \", s7 is s1, \"| but equal:\", s7 == s1, \" <- interning never applies to strings built at runtime\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "'hello' (identifier-shaped), separate statements:       True  <- real auto-interning, not folding\n'hello_world' (identifier-shaped), separate statements: True  <- also auto-interned\n'hello world' (has a space), separate statements, HERE: False  <- False here; NOT auto-interned, and no cross-statement folding in a notebook (a script would print True)\nruntime-built 'hello' vs the literal:                   False | but equal: True  <- interning never applies to strings built at runtime\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "**Takeaway:** never rely on `is` for value equality. Even setting that aside, \"is this cached/interned\"\nhas three independent answers depending on which mechanism applies (runtime singleton cache, compile-time\nfolding within one code object, or runtime auto-interning of identifier-shaped strings) -- and the\ncompile-time one genuinely gives different results in a script vs. a notebook, which is exactly the kind of\nthing that makes `is`-based micro-optimizations unreliable across environments."
+    }
+  ],
+  "interview": "This is a classic gotcha question precisely because it's easy to get *partially* right — most candidates\nknow \"the cache is -5 to 256\" as a memorized rule, without understanding *why*, which is exactly what a\ngood interviewer probes with a follow-up like \"would that still be true inside a function, or in the REPL?\"\nA strong answer explains the mechanism (a real runtime singleton cache vs. compiler constant-folding vs.\nstring auto-interning are three different things), not just the observed behavior. That distinction is also\nwhat lets someone predict *new* edge cases instead of having memorized one.",
+  "industryPractice": "In real code, nobody uses `is` to compare ints or strings for equality on purpose — linters catch it\noutright (`ruff`'s F632, ILP32-style checks in most IDEs) and code review would flag it immediately. The one\nlegitimate, idiomatic use of `is` in production Python is comparing against singletons you control: `is\nNone`, `is True`, or your own sentinel objects and `Enum` members. String interning specifically matters in\nperformance-sensitive code that handles huge volumes of repeated short strings (tokenizers, parsers) where\nan explicit `sys.intern()` call is sometimes used deliberately as a memory optimization.",
+  "related": [
+    {
+      "language": "java",
+      "slug": "01_equals_vs_eq_string_pool",
+      "title": "`==` vs `.equals()`, and the String constant pool",
+      "kind": "compare",
+      "label": "Identity vs. equality, and reference caching"
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

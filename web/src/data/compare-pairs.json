@@ -1,0 +1,15 @@
+[
+  {
+    "a": {
+      "language": "python",
+      "slug": "01_identity_smallint_string_interning",
+      "title": "`is` vs `==`, the small-int cache, and string interning"
+    },
+    "b": {
+      "language": "java",
+      "slug": "01_equals_vs_eq_string_pool",
+      "title": "`==` vs `.equals()`, and the String constant pool"
+    },
+    "label": "Identity vs. equality, and reference caching"
+  }
+]

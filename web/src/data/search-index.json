@@ -1,0 +1,18 @@
+[
+  {
+    "language": "python",
+    "slug": "01_identity_smallint_string_interning",
+    "title": "`is` vs `==`, the small-int cache, and string interning",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "`is` vs `==`, small-int cache (-5..256), string interning rules and when they silently stop applying"
+  },
+  {
+    "language": "java",
+    "slug": "01_equals_vs_eq_string_pool",
+    "title": "`==` vs `.equals()`, and the String constant pool",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "`==` vs `.equals()`, the `String` pool and `.intern()`"
+  }
+]

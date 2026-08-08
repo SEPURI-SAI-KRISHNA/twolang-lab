@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fffdfb;
+  --surface: #f7f5f1;
+  --foreground: #1c1a17;
+  --muted: #6b6459;
+  --border: #e7e2d9;
+  --accent: #0f6e64;
+  --accent-hover: #0b544d;
+  --accent-soft: #e6f2f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-source-serif);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #14120f;
+    --surface: #1c1a16;
+    --foreground: #f1ede6;
+    --muted: #a39c8e;
+    --border: #322e27;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --accent-soft: rgba(45, 212, 191, 0.1);
+  }
+}
+
+html {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b7ada0 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #b7ada0;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* highlight.js (github theme) supplies token colors; our own containers own
+   background/border/padding so the theme's white bg doesn't fight our card. */
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hljs {
+    color: #d6d0c4;
+  }
+  .hljs-comment,
+  .hljs-quote {
+    color: #8b8377;
+  }
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #4fd1c5;
+  }
+  .hljs-string,
+  .hljs-doctag {
+    color: #f2c078;
+  }
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+    color: #7fb3e8;
+  }
+  .hljs-number,
+  .hljs-literal {
+    color: #d19a66;
+  }
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: #e5c07b;
+  }
+}

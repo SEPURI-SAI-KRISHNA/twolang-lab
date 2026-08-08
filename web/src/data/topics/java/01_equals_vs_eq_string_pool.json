@@ -1,0 +1,52 @@
+{
+  "language": "java",
+  "slug": "01_equals_vs_eq_string_pool",
+  "title": "`==` vs `.equals()`, and the String constant pool",
+  "notebookPath": "java/01_equals_vs_eq_string_pool.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# `==` vs `.equals()`, and the String constant pool\n\n`==` on objects compares **reference identity**. `.equals()` compares **logical equality** (as defined by\nthe class). String literals are special: the JVM interns them in a shared constant pool, so two identical\nliterals ARE the same reference — but `new String(...)` deliberately creates a distinct heap object even\nif the contents match. `.intern()` looks a string up in (or adds it to) the pool."
+    },
+    {
+      "type": "code",
+      "source": "String s1 = \"hello\";\nString s2 = \"hello\";\nString s3 = new String(\"hello\");\n\nSystem.out.println(\"s1 == s2 (both literals, pooled):      \" + (s1 == s2));\nSystem.out.println(\"s1 == s3 (s3 is `new String(...)`):    \" + (s1 == s3));\nSystem.out.println(\"s1.equals(s3):                         \" + s1.equals(s3));\nSystem.out.println(\"s1 == s3.intern():                     \" + (s1 == s3.intern()));\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "s1 == s2 (both literals, pooled):      true\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "s1 == s3 (s3 is `new String(...)`):    false\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "s1.equals(s3):                         true\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "s1 == s3.intern():                     true\n"
+        }
+      ]
+    }
+  ],
+  "interview": "One of the single most common Java interview questions, precisely because it's easy to get *partially*\nright — most candidates know \"use `.equals()`, not `==`\" without understanding the mechanism, which is\nexactly what a good follow-up like \"what about `new String(\\\"x\\\")`?\" is designed to expose. A strong answer\nexplains the constant pool, not just the rule.",
+  "industryPractice": "Static analysis flags this by default in essentially every serious Java codebase's CI (SpotBugs'\n`ES_COMPARING_STRINGS_WITH_EQ`, and equivalent built-in IDE inspections in IntelliJ and Eclipse). Any team\nwithout that lint gate has almost certainly shipped this bug at least once — it's rare enough to catch in\nmanual review because it often *works* in casual testing (small literal strings get pooled) and only breaks\non strings built at runtime.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "01_identity_smallint_string_interning",
+      "title": "`is` vs `==`, the small-int cache, and string interning",
+      "kind": "compare",
+      "label": "Identity vs. equality, and reference caching"
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

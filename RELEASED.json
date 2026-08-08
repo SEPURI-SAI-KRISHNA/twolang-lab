@@ -1,0 +1,4 @@
+[
+  "python/01_identity_smallint_string_interning",
+  "java/01_equals_vs_eq_string_pool"
+]
