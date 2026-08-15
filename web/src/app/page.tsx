@@ -4,7 +4,7 @@ import { InlineMd } from "@/components/InlineMd";
 
 export default function Home() {
   const manifest = getManifest();
-  const { done, total } = getTotals();
+  const { done } = getTotals();
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-10 sm:px-10 sm:py-14 lg:px-14 xl:max-w-6xl">
@@ -25,10 +25,7 @@ export default function Home() {
 
       <div className="mb-8 flex flex-wrap items-center gap-4">
         <div className="rounded-xl border border-border bg-surface px-5 py-4">
-          <div className="text-[1.75rem] leading-none font-semibold text-foreground">
-            {done}
-            <span className="text-base font-normal text-muted">/{total}</span>
-          </div>
+          <div className="text-[1.75rem] leading-none font-semibold text-foreground">{done}</div>
           <div className="mt-1 text-[13px] text-muted">topics written</div>
         </div>
         {done > 0 && (
@@ -72,7 +69,7 @@ export default function Home() {
                       {category.letter}. {category.name}
                     </h3>
                     <span className="rounded-full bg-surface px-2 py-0.5 text-[12px] font-medium text-muted">
-                      {catDone.length}/{category.items.length}
+                      {catDone.length} {catDone.length === 1 ? "topic" : "topics"}
                     </span>
                   </div>
                   <ul className="space-y-1.5">

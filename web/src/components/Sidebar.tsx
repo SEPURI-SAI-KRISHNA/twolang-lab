@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import type { Manifest, Language, SearchEntry } from "@/lib/types";
 import searchIndex from "@/data/search-index.json";
 import { useProgress } from "@/lib/useProgress";
-import { InlineMd } from "./InlineMd";
 
 const TIER_COLORS: Record<string, string> = {
   T1: "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300",
@@ -172,7 +171,6 @@ function LanguageSection({
   onNavigate?: () => void;
 }) {
   const done = categories.reduce((n, c) => n + c.items.filter((i) => i.status === "done").length, 0);
-  const total = categories.reduce((n, c) => n + c.items.length, 0);
 
   return (
     <div className="mb-5">
@@ -180,14 +178,13 @@ function LanguageSection({
         <h2 className="text-[13px] font-bold tracking-widest text-muted uppercase">
           {lang === "python" ? "Python" : "Java"}
         </h2>
-        <span className="text-[12px] font-medium text-muted">
-          {done}/{total}
-        </span>
+        <span className="text-[12px] font-medium text-muted">{done}</span>
       </div>
       {categories.map((category) => {
+        const writtenItems = category.items.filter((i) => i.status === "done" && i.slug);
+        if (writtenItems.length === 0) return null;
         const key = `${lang}-${category.letter}`;
         const isOpen = expanded[key] !== undefined ? expanded[key] : key === defaultOpenKey;
-        const catDone = category.items.filter((i) => i.status === "done").length;
         return (
           <div key={key} className="mb-0.5">
             <button
@@ -199,25 +196,13 @@ function LanguageSection({
               <span className="min-w-0 flex-1 truncate">
                 {category.letter}. {category.name}
               </span>
-              <span className="shrink-0 text-[12px] text-muted">
-                {catDone}/{category.items.length}
-              </span>
+              <span className="shrink-0 text-[12px] text-muted">{writtenItems.length}</span>
             </button>
             {isOpen && (
               <ul className="mt-0.5 mb-2 ml-4 space-y-0.5 border-l-2 border-border pl-3">
-                {category.items.map((item, idx) => {
-                  const active = item.slug && item.slug === activeSlug;
-                  if (item.status !== "done" || !item.slug) {
-                    return (
-                      <li key={idx} className="flex items-start gap-2 rounded-lg px-2 py-1.5">
-                        <TierBadge tier={item.tier} />
-                        <span className="text-[14px] leading-snug text-muted/70">
-                          <InlineMd text={item.text} />
-                        </span>
-                      </li>
-                    );
-                  }
-                  const reviewedFlag = isReviewed(lang, item.slug);
+                {writtenItems.map((item, idx) => {
+                  const active = item.slug === activeSlug;
+                  const reviewedFlag = isReviewed(lang, item.slug!);
                   return (
                     <li key={idx} className="group flex items-start gap-2">
                       <button

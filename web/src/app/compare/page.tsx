@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Python ↔ Java, side by side",
   description:
     "Curated pairs where Python and Java solve the same underlying problem in genuinely comparable ways, shown with real executed code and real output from both.",
+  alternates: { canonical: "/compare" },
 };
 
 function firstMarkdown(cells: Cell[]): string | null {

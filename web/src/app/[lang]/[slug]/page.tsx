@@ -52,6 +52,7 @@ export async function generateMetadata({
   return {
     title: `${topic.title} (${langLabel})`,
     description,
+    alternates: { canonical: `/${lang}/${slug}` },
     openGraph: { title: `${topic.title} (${langLabel})`, description },
     twitter: { title: `${topic.title} (${langLabel})`, description },
   };

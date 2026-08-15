@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     template: "%s — Mastery",
   },
   description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Mastery — Python & Java, in depth",

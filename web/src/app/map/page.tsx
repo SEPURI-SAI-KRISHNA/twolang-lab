@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Concept map",
   description:
     "How every topic connects — curated relationships between Python and Java concepts, plus which pairs are genuine cross-language equivalents.",
+  alternates: { canonical: "/map" },
 };
 
 const TIER_FILL: Record<Tier, string> = { T1: "#059669", T2: "#d97706", T3: "#7c3aed" };
