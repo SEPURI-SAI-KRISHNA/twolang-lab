@@ -1,6 +1,31 @@
 {
   "edges": [
     {
+      "a": "python/02_mutable_default_argument",
+      "b": "python/03_shallow_vs_deep_copy",
+      "kind": "related"
+    },
+    {
+      "a": "python/04_dict_set_mutation_during_iteration",
+      "b": "python/05_iterator_protocol",
+      "kind": "related"
+    },
+    {
+      "a": "java/01_equals_vs_eq_string_pool",
+      "b": "java/02_integer_autobox_cache",
+      "kind": "related"
+    },
+    {
+      "a": "java/01_equals_vs_eq_string_pool",
+      "b": "java/03_hashcode_equals_contract",
+      "kind": "related"
+    },
+    {
+      "a": "java/03_hashcode_equals_contract",
+      "b": "java/04_records_basics",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",

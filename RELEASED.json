@@ -1,4 +1,12 @@
 [
   "python/01_identity_smallint_string_interning",
-  "java/01_equals_vs_eq_string_pool"
+  "java/01_equals_vs_eq_string_pool",
+  "python/02_mutable_default_argument",
+  "java/02_integer_autobox_cache",
+  "python/03_shallow_vs_deep_copy",
+  "java/03_hashcode_equals_contract",
+  "python/04_dict_set_mutation_during_iteration",
+  "java/04_records_basics",
+  "python/05_iterator_protocol",
+  "java/05_type_erasure"
 ]

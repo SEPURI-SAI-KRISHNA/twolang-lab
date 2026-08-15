@@ -16,8 +16,8 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### A. Object model, identity & memory
 - [x] T1 `is` vs `==`, small-int cache (-5..256), string interning rules and when they silently stop applying → `python/01_identity_smallint_string_interning.ipynb`
-- [ ] T1 mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time)
-- [ ] T1 shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__`
+- [x] T1 mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time) → `python/02_mutable_default_argument.ipynb`
+- [x] T1 shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__` → `python/03_shallow_vs_deep_copy.ipynb`
 - [ ] T2 `__slots__`: memory savings, what you lose (no `__dict__`, no multiple inheritance of slotted classes without care)
 - [ ] T2 reference counting + generational cyclic GC (`gc` module, generations, thresholds)
 - [ ] T2 weak references (`weakref`) and why caches/observers use them
@@ -25,8 +25,8 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 `id()` reuse after garbage collection — the classic "why do two different objects have the same id" trap
 
 ### B. Iteration & generators
-- [ ] T1 dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change
-- [ ] T1 iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once
+- [x] T1 dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change → `python/04_dict_set_mutation_during_iteration.ipynb`
+- [x] T1 iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once → `python/05_iterator_protocol.ipynb`
 - [ ] T1 generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory)
 - [ ] T2 `yield from`, delegation, and generator `send()` / `throw()` / `close()`
 - [ ] T2 `itertools` deep-dive: `islice`, `tee`, `groupby` (needs sorted input!), `chain`, `accumulate`, `pairwise`
@@ -102,15 +102,15 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### A. Object model, identity & memory
 - [x] T1 `==` vs `.equals()`, the `String` pool and `.intern()` → `java/01_equals_vs_eq_string_pool.ipynb`
-- [ ] T1 `Integer` autoboxing cache (-128..127) — the `==` gotcha with boxed types
-- [ ] T1 `hashCode`/`equals` contract, `Objects.hash`/`Objects.equals`, what breaks in a `HashMap` if you violate it
-- [ ] T1 records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation
+- [x] T1 `Integer` autoboxing cache (-128..127) — the `==` gotcha with boxed types → `java/02_integer_autobox_cache.ipynb`
+- [x] T1 `hashCode`/`equals` contract, `Objects.hash`/`Objects.equals`, what breaks in a `HashMap` if you violate it → `java/03_hashcode_equals_contract.ipynb`
+- [x] T1 records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation → `java/04_records_basics.ipynb`
 - [ ] T2 `final` vs true immutability, "effectively final" for lambda capture
 - [ ] T2 defensive copying, why `clone()` is mostly a mistake, copy constructors as the idiom
 - [ ] T3 object header overhead (JOL-style), why a `Boolean` isn't 1 bit
 
 ### B. Generics
-- [ ] T1 type erasure — why you can't do `new T[]` or `instanceof List<String>`
+- [x] T1 type erasure — why you can't do `new T[]` or `instanceof List<String>` → `java/05_type_erasure.ipynb`
 - [ ] T1 bounded wildcards, PECS ("producer extends, consumer super")
 - [ ] T2 unchecked warnings, heap pollution with varargs + generics
 - [ ] T3 generic method type inference edge cases (target typing)
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 2 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 10 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
