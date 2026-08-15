@@ -1,0 +1,49 @@
+{
+  "language": "java",
+  "slug": "03_hashcode_equals_contract",
+  "title": "The `hashCode`/`equals` contract",
+  "notebookPath": "java/03_hashcode_equals_contract.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# The `hashCode`/`equals` contract\n\nHash-based collections (`HashSet`, `HashMap`) find an entry's bucket using `hashCode()`, then confirm the\nmatch using `equals()`. If you override `equals()` without also overriding `hashCode()`, two \"equal\" objects\ncan land in different buckets — so a `HashSet` will silently `contains()` == false for an object it should\nlogically consider a duplicate. The class below deliberately overrides only `equals()` to show the break."
+    },
+    {
+      "type": "code",
+      "source": "import java.util.*;\n\nclass Bad {\n    int v;\n    Bad(int v) { this.v = v; }\n    @Override public boolean equals(Object o) { return o instanceof Bad b && b.v == v; }\n    // no hashCode() override -> falls back to identity hash, contract broken\n}\n\nSet<Bad> set = new HashSet<>();\nBad b1 = new Bad(5);\nset.add(b1);\n\nSystem.out.println(\"contains(new Bad(5)) [equal by value]: \" + set.contains(new Bad(5)));\nSystem.out.println(\"contains(b1) [same reference]:         \" + set.contains(b1));\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "contains(new Bad(5)) [equal by value]: false\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "contains(b1) [same reference]:         true\n"
+        }
+      ]
+    }
+  ],
+  "interview": "A must-know for any Java role beyond entry level. Interviewers use it to check whether a candidate\nunderstands *why* the contract exists — how hash-based lookup actually finds a bucket, then confirms the\nmatch — rather than just knowing that IDEs auto-generate both methods together. That \"why\" is what lets\nsomeone diagnose a broken contract in code they didn't write.",
+  "industryPractice": "IDE-generated implementations (IntelliJ, Eclipse) and Lombok's `@EqualsAndHashCode` exist specifically\nbecause hand-written violations of this contract were such a common, hard-to-debug source of \"why isn't my\nobject found in this `HashSet`\" bugs. Even so, custom `equals`-only overrides — a frequent mistake on JPA\nentity classes in particular — remain a recurring real-world defect that surfaces as objects mysteriously\n\"disappearing\" from hash-based collections.",
+  "related": [
+    {
+      "language": "java",
+      "slug": "01_equals_vs_eq_string_pool",
+      "title": "`==` vs `.equals()`, and the String constant pool",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "language": "java",
+      "slug": "04_records_basics",
+      "title": "Records: compact constructors, generated equals/hashCode/toString",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

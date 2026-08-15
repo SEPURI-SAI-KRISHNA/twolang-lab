@@ -1,0 +1,59 @@
+{
+  "language": "java",
+  "slug": "05_type_erasure",
+  "title": "Generics are erased at runtime",
+  "notebookPath": "java/05_type_erasure.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Generics are erased at runtime\n\nJava generics exist only at compile time for type checking; the compiler erases them to raw types (and\ninserts casts) in the bytecode. `List<String>` and `List<Integer>` are literally the same class object at\nruntime, and there is no way to ask a `List<T>` what `T` is. A direct consequence: you cannot `new T[n]`\ninside a generic class — the compiler can't erase that to anything meaningful."
+    },
+    {
+      "type": "code",
+      "source": "import java.util.*;\n\nList<String> ls = new ArrayList<>();\nList<Integer> li = new ArrayList<>();\n\nSystem.out.println(\"List<String> and List<Integer> share a runtime class: \" + (ls.getClass() == li.getClass()));\nSystem.out.println(\"runtime class: \" + ls.getClass());\nSystem.out.println(\"`ls instanceof List<String>` even compiles down to a raw `instanceof List` check --\");\nSystem.out.println(\"the type argument gives no runtime discrimination at all: \" + (ls instanceof List<String>));\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "List<String> and List<Integer> share a runtime class: true\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "runtime class: class java.util.ArrayList\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "`ls instanceof List<String>` even compiles down to a raw `instanceof List` check --\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "the type argument gives no runtime discrimination at all: true\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "And here's the actual compiler error you get if you try to create a generic array directly (captured from a real `javac` run, not paraphrased):"
+    },
+    {
+      "type": "code",
+      "source": "// Reproduced verbatim from `javac` on:\n//   class GenArr<T> { T[] makeArray(int n) { return new T[n]; } }\n//\n// GenArr.java:4: error: generic array creation\n//         return new T[n];\n//                ^\n// 1 error\nSystem.out.println(\"(see markdown/comment above -- this is a compile-time error, can't be caught at runtime)\");\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "(see markdown/comment above -- this is a compile-time error, can't be caught at runtime)\n"
+        }
+      ]
+    }
+  ],
+  "interview": "A deep-cut but common senior-level question — \"why can't you do `new T[]`?\" or \"why is `list instanceof\nList<String>` meaningless?\" — specifically used to separate candidates who've internalized how generics\nactually work at the bytecode level from those who've only used generics as type-safety syntax without\nthinking about what the compiler does with them.",
+  "industryPractice": "Understanding erasure is essential for reading and writing generic library code — collections, builders, and\nreflection-based frameworks like Jackson or Gson have to work around it explicitly (via patterns like\n`TypeToken`/`TypeReference`) to recover type information erasure throws away. Most application-level code\nnever has to think about this directly, but anyone writing a reusable generic API or debugging a\n`ClassCastException` from an unchecked-warning code path hits it immediately.",
+  "related": [],
+  "category": "Generics",
+  "categoryLetter": "B",
+  "tier": "T1"
+}

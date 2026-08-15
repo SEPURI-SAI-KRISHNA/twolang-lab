@@ -10,6 +10,42 @@
       "tier": "T1"
     },
     {
+      "id": "python/02_mutable_default_argument",
+      "language": "python",
+      "slug": "02_mutable_default_argument",
+      "title": "The mutable default argument trap",
+      "category": "Object model, identity & memory",
+      "categoryLetter": "A",
+      "tier": "T1"
+    },
+    {
+      "id": "python/03_shallow_vs_deep_copy",
+      "language": "python",
+      "slug": "03_shallow_vs_deep_copy",
+      "title": "Shallow vs deep copy",
+      "category": "Object model, identity & memory",
+      "categoryLetter": "A",
+      "tier": "T1"
+    },
+    {
+      "id": "python/04_dict_set_mutation_during_iteration",
+      "language": "python",
+      "slug": "04_dict_set_mutation_during_iteration",
+      "title": "dict/set size cannot change during iteration",
+      "category": "Iteration & generators",
+      "categoryLetter": "B",
+      "tier": "T1"
+    },
+    {
+      "id": "python/05_iterator_protocol",
+      "language": "python",
+      "slug": "05_iterator_protocol",
+      "title": "The iterator protocol: why `for` calls `iter()` exactly once",
+      "category": "Iteration & generators",
+      "categoryLetter": "B",
+      "tier": "T1"
+    },
+    {
       "id": "java/01_equals_vs_eq_string_pool",
       "language": "java",
       "slug": "01_equals_vs_eq_string_pool",
@@ -17,9 +53,75 @@
       "category": "Object model, identity & memory",
       "categoryLetter": "A",
       "tier": "T1"
+    },
+    {
+      "id": "java/02_integer_autobox_cache",
+      "language": "java",
+      "slug": "02_integer_autobox_cache",
+      "title": "The `Integer` autobox cache (-128..127)",
+      "category": "Object model, identity & memory",
+      "categoryLetter": "A",
+      "tier": "T1"
+    },
+    {
+      "id": "java/03_hashcode_equals_contract",
+      "language": "java",
+      "slug": "03_hashcode_equals_contract",
+      "title": "The `hashCode`/`equals` contract",
+      "category": "Object model, identity & memory",
+      "categoryLetter": "A",
+      "tier": "T1"
+    },
+    {
+      "id": "java/04_records_basics",
+      "language": "java",
+      "slug": "04_records_basics",
+      "title": "Records: compact constructors, generated equals/hashCode/toString",
+      "category": "Object model, identity & memory",
+      "categoryLetter": "A",
+      "tier": "T1"
+    },
+    {
+      "id": "java/05_type_erasure",
+      "language": "java",
+      "slug": "05_type_erasure",
+      "title": "Generics are erased at runtime",
+      "category": "Generics",
+      "categoryLetter": "B",
+      "tier": "T1"
     }
   ],
   "edges": [
+    {
+      "a": "python/02_mutable_default_argument",
+      "b": "python/03_shallow_vs_deep_copy",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "python/04_dict_set_mutation_during_iteration",
+      "b": "python/05_iterator_protocol",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "java/01_equals_vs_eq_string_pool",
+      "b": "java/02_integer_autobox_cache",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "java/01_equals_vs_eq_string_pool",
+      "b": "java/03_hashcode_equals_contract",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "java/03_hashcode_equals_contract",
+      "b": "java/04_records_basics",
+      "kind": "related",
+      "label": null
+    },
     {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",

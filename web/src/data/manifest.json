@@ -15,14 +15,16 @@
         {
           "tier": "T1",
           "text": "mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time)",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "02_mutable_default_argument",
+          "title": "The mutable default argument trap"
         },
         {
           "tier": "T1",
           "text": "shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__`",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "03_shallow_vs_deep_copy",
+          "title": "Shallow vs deep copy"
         },
         {
           "tier": "T2",
@@ -64,14 +66,16 @@
         {
           "tier": "T1",
           "text": "dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "04_dict_set_mutation_during_iteration",
+          "title": "dict/set size cannot change during iteration"
         },
         {
           "tier": "T1",
           "text": "iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "05_iterator_protocol",
+          "title": "The iterator protocol: why `for` calls `iter()` exactly once"
         },
         {
           "tier": "T1",
@@ -460,20 +464,23 @@
         {
           "tier": "T1",
           "text": "`Integer` autoboxing cache (-128..127) — the `==` gotcha with boxed types",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "02_integer_autobox_cache",
+          "title": "The `Integer` autobox cache (-128..127)"
         },
         {
           "tier": "T1",
           "text": "`hashCode`/`equals` contract, `Objects.hash`/`Objects.equals`, what breaks in a `HashMap` if you violate it",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "03_hashcode_equals_contract",
+          "title": "The `hashCode`/`equals` contract"
         },
         {
           "tier": "T1",
           "text": "records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "04_records_basics",
+          "title": "Records: compact constructors, generated equals/hashCode/toString"
         },
         {
           "tier": "T2",
@@ -503,8 +510,9 @@
         {
           "tier": "T1",
           "text": "type erasure — why you can't do `new T[]` or `instanceof List<String>`",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "05_type_erasure",
+          "title": "Generics are erased at runtime"
         },
         {
           "tier": "T1",

@@ -33,7 +33,9 @@ Each topic gets:
 
 This repo grows incrementally rather than all at once — new topics get added and pushed in small batches.
 Check `INDEX.md` for exactly what's live right now and what tier (`T1` high-leverage / `T2` intermediate /
-`T3` internals) each topic is.
+`T3` internals) each topic is. A topic goes live the moment its notebook is committed — every build
+(`npm run dev`/`build`/`content`) runs `tools/release.mjs` first, which regenerates `INDEX.md` and
+`relations.json` from whatever's actually tracked in git. No separate publish step.
 
 ## Repo structure
 
@@ -44,8 +46,7 @@ insights/python/       Interview-angle + industry-practice notes, one .md per re
 insights/java/         Same, for Java
 INDEX.md               The taxonomy: every released topic, its tier, and a link to its notebook
 relations.json         Curated concept-map edges + Python↔Java compare pairs (released topics only)
-RELEASED.json          The list of topic slugs currently live
-tools/release.mjs      Publishes more topics from the maintainer's full local index (see below)
+tools/release.mjs      Regenerates INDEX.md/relations.json from the maintainer's full local index (see below)
 web/                   The Next.js site (static export, deployed to Cloudflare Pages)
 ```
 

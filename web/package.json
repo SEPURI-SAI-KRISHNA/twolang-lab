@@ -11,11 +11,11 @@
     "url": "https://github.com/SEPURI-SAI-KRISHNA/twolang-lab.git"
   },
   "scripts": {
-    "dev": "node scripts/build-content.mjs && next dev",
-    "build": "node scripts/build-content.mjs && next build",
+    "dev": "node ../tools/release.mjs && node scripts/build-content.mjs && next dev",
+    "build": "node ../tools/release.mjs && node scripts/build-content.mjs && next build",
     "start": "next start",
     "lint": "eslint",
-    "content": "node scripts/build-content.mjs"
+    "content": "node ../tools/release.mjs && node scripts/build-content.mjs"
   },
   "dependencies": {
     "highlight.js": "^11.11.1",

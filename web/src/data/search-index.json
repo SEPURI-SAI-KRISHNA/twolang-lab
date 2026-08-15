@@ -8,11 +8,75 @@
     "text": "`is` vs `==`, small-int cache (-5..256), string interning rules and when they silently stop applying"
   },
   {
+    "language": "python",
+    "slug": "02_mutable_default_argument",
+    "title": "The mutable default argument trap",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time)"
+  },
+  {
+    "language": "python",
+    "slug": "03_shallow_vs_deep_copy",
+    "title": "Shallow vs deep copy",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__`"
+  },
+  {
+    "language": "python",
+    "slug": "04_dict_set_mutation_during_iteration",
+    "title": "dict/set size cannot change during iteration",
+    "category": "Iteration & generators",
+    "tier": "T1",
+    "text": "dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change"
+  },
+  {
+    "language": "python",
+    "slug": "05_iterator_protocol",
+    "title": "The iterator protocol: why `for` calls `iter()` exactly once",
+    "category": "Iteration & generators",
+    "tier": "T1",
+    "text": "iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once"
+  },
+  {
     "language": "java",
     "slug": "01_equals_vs_eq_string_pool",
     "title": "`==` vs `.equals()`, and the String constant pool",
     "category": "Object model, identity & memory",
     "tier": "T1",
     "text": "`==` vs `.equals()`, the `String` pool and `.intern()`"
+  },
+  {
+    "language": "java",
+    "slug": "02_integer_autobox_cache",
+    "title": "The `Integer` autobox cache (-128..127)",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "`Integer` autoboxing cache (-128..127) — the `==` gotcha with boxed types"
+  },
+  {
+    "language": "java",
+    "slug": "03_hashcode_equals_contract",
+    "title": "The `hashCode`/`equals` contract",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "`hashCode`/`equals` contract, `Objects.hash`/`Objects.equals`, what breaks in a `HashMap` if you violate it"
+  },
+  {
+    "language": "java",
+    "slug": "04_records_basics",
+    "title": "Records: compact constructors, generated equals/hashCode/toString",
+    "category": "Object model, identity & memory",
+    "tier": "T1",
+    "text": "records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation"
+  },
+  {
+    "language": "java",
+    "slug": "05_type_erasure",
+    "title": "Generics are erased at runtime",
+    "category": "Generics",
+    "tier": "T1",
+    "text": "type erasure — why you can't do `new T[]` or `instanceof List<String>`"
   }
 ]

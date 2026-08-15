@@ -1,0 +1,52 @@
+{
+  "language": "python",
+  "slug": "02_mutable_default_argument",
+  "title": "The mutable default argument trap",
+  "notebookPath": "python/02_mutable_default_argument.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# The mutable default argument trap\n\nA `def`'s default argument value is evaluated **once**, at function-definition time — not once per call.\nIf that default is a mutable object (list, dict, set), every call that doesn't override it shares the\n*same* object, so mutations leak across calls. This is one of the most common real bugs in beginner and even\nintermediate Python code, and it's also why idiomatic code uses `None` as the sentinel default instead."
+    },
+    {
+      "type": "code",
+      "source": "def append_item(item, bucket=[]):\n    bucket.append(item)\n    return bucket\n\nprint(append_item(1))          # [1]\nprint(append_item(2))          # [1, 2]  <- same list object as before!\nprint(append_item(3, bucket=[]))  # [3]   <- explicit fresh list breaks the sharing\nprint(append_item(4))          # [1, 2, 4] <- back to sharing the original default\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "[1]\n[1, 2]\n[3]\n[1, 2, 4]\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "The correct idiom: default to `None`, create the mutable object inside the function body."
+    },
+    {
+      "type": "code",
+      "source": "def append_item_fixed(item, bucket=None):\n    if bucket is None:\n        bucket = []\n    bucket.append(item)\n    return bucket\n\nprint(append_item_fixed(1))\nprint(append_item_fixed(2))   # independent list this time\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "[1]\n[2]\n"
+        }
+      ]
+    }
+  ],
+  "interview": "Extremely common as a \"what's wrong with this function?\" question, and a genuinely good one — it cleanly\nseparates candidates who've actually been bitten by this in real code from those who've only read about\nPython. The strong follow-up is \"why does Python behave this way?\" (defaults are evaluated once, at\n`def`-time, and stored on the function object itself) — that \"why\" is what lets someone reason about\nrelated surprises, like default arguments that call a function at def-time instead of per-call.",
+  "industryPractice": "Every mainstream Python linter flags this automatically (pylint's `dangerous-default-value`, ruff's `B006`),\nso it rarely survives code review on a team with CI lint gates — but it's still one of the most common bugs\nin scripts, notebooks, and legacy code without linting. It's consistently one of the first things a senior\nengineer points out reviewing a junior contributor's first pull request, and the `None`-sentinel fix\n(`def f(x=None): x = x or []`) is idiomatic enough that seeing the raw mutable-default version is itself a\nweak signal about a codebase's review rigor.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "03_shallow_vs_deep_copy",
+      "title": "Shallow vs deep copy",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

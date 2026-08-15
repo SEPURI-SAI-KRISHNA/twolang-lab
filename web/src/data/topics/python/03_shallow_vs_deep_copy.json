@@ -1,0 +1,52 @@
+{
+  "language": "python",
+  "slug": "03_shallow_vs_deep_copy",
+  "title": "Shallow vs deep copy",
+  "notebookPath": "python/03_shallow_vs_deep_copy.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Shallow vs deep copy\n\n`copy.copy()` duplicates the outer container only — nested mutable objects are still shared references.\n`copy.deepcopy()` recursively duplicates everything. Slicing (`lst[:]`) and `list(lst)` are also shallow\ncopies, which surprises people who expect them to fully isolate nested data."
+    },
+    {
+      "type": "code",
+      "source": "import copy\n\noriginal = {\"name\": \"a\", \"tags\": [\"x\", \"y\"]}\n\nshallow = copy.copy(original)\ndeep = copy.deepcopy(original)\n\nshallow[\"tags\"].append(\"SHALLOW-MUTATED\")\n\nprint(\"original:\", original)\nprint(\"shallow:  \", shallow, \" <- same dict copied, but 'tags' list is the SAME object as original's\")\nprint(\"deep:     \", deep, \" <- untouched, fully independent\")\n\nprint()\nprint(\"shallow['tags'] is original['tags']:\", shallow[\"tags\"] is original[\"tags\"])\nprint(\"deep['tags'] is original['tags']:   \", deep[\"tags\"] is original[\"tags\"])\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "original: {'name': 'a', 'tags': ['x', 'y', 'SHALLOW-MUTATED']}\nshallow:   {'name': 'a', 'tags': ['x', 'y', 'SHALLOW-MUTATED']}  <- same dict copied, but 'tags' list is the SAME object as original's\ndeep:      {'name': 'a', 'tags': ['x', 'y']}  <- untouched, fully independent\n\nshallow['tags'] is original['tags']: True\ndeep['tags'] is original['tags']:    False\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "Custom classes can control this via `__copy__`/`__deepcopy__`:"
+    },
+    {
+      "type": "code",
+      "source": "class Box:\n    def __init__(self, items):\n        self.items = items\n    def __deepcopy__(self, memo):\n        print(\"  (custom __deepcopy__ called)\")\n        return Box(copy.deepcopy(self.items, memo))\n    def __repr__(self):\n        return f\"Box({self.items})\"\n\nb = Box([1, 2, 3])\nb2 = copy.deepcopy(b)\nprint(b, b2, b.items is b2.items)\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "  (custom __deepcopy__ called)\nBox([1, 2, 3]) Box([1, 2, 3]) False\n"
+        }
+      ]
+    }
+  ],
+  "interview": "Comes up naturally in questions about caching, memoization, or writing pure functions, and it's a good\nfilter question because a shallow `copy()` of a list-of-lists is a *silent* bug — nothing raises, the\nprogram just quietly shares state it shouldn't. Interviewers use it to check whether a candidate reflexively\nreaches for the correct copy depth for nested data, not just whether they can recite the two function names.",
+  "industryPractice": "Deep copies are used deliberately but sparingly, since they're O(total object size) and can be genuinely\nexpensive on large nested structures — which is part of why performance-sensitive code often prefers\nimmutable data (tuples, frozen dataclasses) to sidestep the shallow-vs-deep question entirely rather than\npaying for deep copies defensively. Libraries that hand back internal state (ORMs, caching layers) usually\ndocument explicitly whether a returned value is a copy or a shared reference, because getting this wrong —\nin either direction — is a recurring, hard-to-trace class of production bug.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "02_mutable_default_argument",
+      "title": "The mutable default argument trap",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

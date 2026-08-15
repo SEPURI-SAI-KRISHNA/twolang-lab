@@ -1,0 +1,67 @@
+{
+  "language": "java",
+  "slug": "04_records_basics",
+  "title": "Records: compact constructors, generated equals/hashCode/toString",
+  "notebookPath": "java/04_records_basics.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Records: compact constructors, generated equals/hashCode/toString\n\nA `record` auto-generates a canonical constructor, accessors (`x()`, not `getX()`), `equals`/`hashCode`\n(component-wise), and `toString()`. A **compact constructor** (no parameter list) lets you validate/normalize\narguments before they're assigned to the (implicitly final) fields."
+    },
+    {
+      "type": "code",
+      "source": "record Point(int x, int y) {}\n\nPoint p1 = new Point(1, 2);\nPoint p2 = new Point(1, 2);\n\nSystem.out.println(\"p1.equals(p2) [value equality]: \" + p1.equals(p2));\nSystem.out.println(\"p1 == p2 [reference identity]:  \" + (p1 == p2));\nSystem.out.println(\"toString():                     \" + p1);\nSystem.out.println(\"accessor (not getX()):           \" + p1.x() + \",\" + p1.y());\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "p1.equals(p2) [value equality]: true\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "p1 == p2 [reference identity]:  false\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "toString():                     Point[x=1, y=2]\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "accessor (not getX()):           1,2\n"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "source": "record Positive(int v) {\n    public Positive {\n        if (v <= 0) throw new IllegalArgumentException(\"v must be positive, got \" + v);\n    }\n}\ntry {\n    new Positive(-3);\n} catch (IllegalArgumentException e) {\n    System.out.println(\"compact constructor validation fired: \" + e.getMessage());\n}\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "compact constructor validation fired: v must be positive, got -3\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "A real JLS rule this surfaces: the compact constructor's access modifier must **exactly match** the\nrecord's own declared access level -- not weaker, not stronger. A `public record` needs an explicit `public`\non its compact constructor; leaving it off is a compile error, verified below (captured verbatim from a real\n`javac` run on a top-level `public record PubRec(int v) { PubRec { ... } }`):\n\n```\nPubRec.java:2: error: invalid canonical constructor in record PubRec\n    PubRec {\n    ^\n  (attempting to assign stronger access privileges; was public)\n1 error\n```\n"
+    }
+  ],
+  "interview": "A good \"do you know modern Java\" signal (records landed in Java 16). Interviewers sometimes push past \"less\nboilerplate\" to the real tradeoff: records give you a correct, free `equals`/`hashCode`/`toString`, but you\ngive up mutable state and the ability to extend a class — articulating that tradeoff, not just the syntax,\nis what shows genuine understanding.",
+  "industryPractice": "Records rapidly became the default choice for DTOs, API request/response payloads, and immutable value\nobjects in any codebase targeting Java 17+, directly replacing hand-written or Lombok-generated immutable\nPOJOs for that use case. Teams still pinned to Java 8–11 continue reaching for Lombok's `@Value` to get the\nsame effect, which is one of the more common reasons codebases on older LTS versions cite for wanting to\nupgrade.",
+  "related": [
+    {
+      "language": "java",
+      "slug": "03_hashcode_equals_contract",
+      "title": "The `hashCode`/`equals` contract",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

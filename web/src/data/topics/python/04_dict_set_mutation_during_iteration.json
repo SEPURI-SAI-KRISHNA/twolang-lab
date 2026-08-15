@@ -1,0 +1,52 @@
+{
+  "language": "python",
+  "slug": "04_dict_set_mutation_during_iteration",
+  "title": "dict/set size cannot change during iteration",
+  "notebookPath": "python/04_dict_set_mutation_during_iteration.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# dict/set size cannot change during iteration\n\nAdding or removing keys from a `dict` (or elements from a `set`) while iterating over it raises\n`RuntimeError: dictionary changed size during iteration`. CPython's dict iterator tracks a version\ncounter on the dict; any operation that changes the dict's *size* bumps that counter and the next\n`__next__()` call notices the mismatch and raises. Note the precise rule: it's about **size**, not\ncontent — reassigning the value of an *existing* key is completely fine mid-loop."
+    },
+    {
+      "type": "code",
+      "source": "d = {\"a\": 1, \"b\": 2}\ntry:\n    for k in d:\n        d[\"c\"] = 3   # adds a NEW key -> changes size\nexcept RuntimeError as e:\n    print(\"RuntimeError:\", e)\n\nprint()\nd2 = {\"a\": 1, \"b\": 2}\nfor k in d2:\n    d2[k] = d2[k] * 10   # only changes an EXISTING key's value -> size unchanged, totally fine\nprint(\"mutated values in place:\", d2)\n\nprint()\ns = {1, 2, 3}\ntry:\n    for x in s:\n        s.add(4)\nexcept RuntimeError as e:\n    print(\"RuntimeError (set):\", e)\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "RuntimeError: dictionary changed size during iteration\n\nmutated values in place: {'a': 10, 'b': 20}\n\nRuntimeError (set): Set changed size during iteration\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "The safe pattern when you need to add/remove during a walk: iterate over a snapshot copy, or collect changes and apply them after the loop."
+    },
+    {
+      "type": "code",
+      "source": "d3 = {\"a\": 1, \"b\": 2, \"c\": 3}\nfor k in list(d3):        # list(d3) snapshots the keys up front\n    if d3[k] % 2 == 1:\n        del d3[k]\nprint(\"safe removal via snapshot:\", d3)\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "safe removal via snapshot: {'b': 2}\n"
+        }
+      ]
+    }
+  ],
+  "interview": "A strong \"read this code and tell me what happens\" question, because a correct answer requires actually\nunderstanding dict internals rather than having memorized \"don't mutate a dict while iterating it.\" Good\ninterviewers push further: does changing an *existing* key's value also raise? (No.) That's the detail that\nseparates \"knows the rule\" from \"understands the mechanism.\"",
+  "industryPractice": "This is one of the most common real `RuntimeError`s in Python codebases that filter or clean up\ncollections — exactly why `list(d.items())` snapshotting, or rewriting the loop as a dict/list comprehension,\nis the idiomatic fix and shows up constantly in code review suggestions. An experienced reviewer treats any\n`for k in some_dict:` loop that also calls `.pop()`, `del`, or assigns a new key inside the loop body as an\nautomatic red flag worth a second look, even before running it.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "05_iterator_protocol",
+      "title": "The iterator protocol: why `for` calls `iter()` exactly once",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Iteration & generators",
+  "categoryLetter": "B",
+  "tier": "T1"
+}

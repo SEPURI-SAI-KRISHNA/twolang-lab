@@ -1,0 +1,47 @@
+{
+  "language": "java",
+  "slug": "02_integer_autobox_cache",
+  "title": "The `Integer` autobox cache (-128..127)",
+  "notebookPath": "java/02_integer_autobox_cache.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# The `Integer` autobox cache (-128..127)\n\nAutoboxing small `int` literals into `Integer` reuses cached instances for the range -128..127 (per the JLS,\nimplementations may cache more but must cache at least this range). Outside that range, each boxing creates\na new object, so `==` on boxed integers becomes an identity check that silently passes for small numbers and\nsilently fails for larger ones — a real, recurring bug source when someone compares `Integer` with `==`\ninstead of `.equals()`."
+    },
+    {
+      "type": "code",
+      "source": "Integer i1 = 127, i2 = 127;\nInteger i3 = 128, i4 = 128;\n\nSystem.out.println(\"127 == 127 (boxed, cached):     \" + (i1 == i2));\nSystem.out.println(\"128 == 128 (boxed, NOT cached): \" + (i3 == i4));\nSystem.out.println(\"128.equals(128):                \" + i3.equals(i4));\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "127 == 127 (boxed, cached):     true\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "128 == 128 (boxed, NOT cached): false\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "128.equals(128):                true\n"
+        }
+      ]
+    }
+  ],
+  "interview": "A close cousin of the String `==` question and just as popular, specifically because autoboxing hides the\nobject-vs-primitive distinction. Candidates who've mostly worked with primitive `int` and never hit a\n`List<Integer>` comparison bug in production often miss this entirely — which is exactly the gap the\nquestion is designed to surface.",
+  "industryPractice": "This is a real, recurring bug in code that boxes numbers into collections (`List<Integer>`, `Map<Long, ...>`)\nand compares with `==` instead of `.equals()`/`Objects.equals()`. It's especially insidious because it\n\"works\" during development and small-number testing (within the -128..127 cache) and only fails against\nproduction-scale data — a textbook \"works on my machine\" defect that's much harder to catch without a lint\nrule or a code reviewer specifically watching for boxed-type comparisons.",
+  "related": [
+    {
+      "language": "java",
+      "slug": "01_equals_vs_eq_string_pool",
+      "title": "`==` vs `.equals()`, and the String constant pool",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Object model, identity & memory",
+  "categoryLetter": "A",
+  "tier": "T1"
+}

@@ -1,0 +1,52 @@
+{
+  "language": "python",
+  "slug": "05_iterator_protocol",
+  "title": "The iterator protocol: why `for` calls `iter()` exactly once",
+  "notebookPath": "python/05_iterator_protocol.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# The iterator protocol: why `for` calls `iter()` exactly once\n\nAn **iterable** implements `__iter__` (returns an iterator). An **iterator** implements both `__iter__`\n(returning itself) and `__next__` (returns the next value or raises `StopIteration`). `for x in obj` desugars\nto roughly: `it = iter(obj); while True: try: x = next(it) except StopIteration: break`. Understanding this\nis what lets you read (and write) any custom iterable class in a codebase without treating it as magic."
+    },
+    {
+      "type": "code",
+      "source": "class CountUp:\n    \"\"\"Iterable: a fresh iterator each time -> can be iterated multiple times independently.\"\"\"\n    def __init__(self, n):\n        self.n = n\n    def __iter__(self):\n        return CountUpIterator(self.n)\n\nclass CountUpIterator:\n    def __init__(self, n):\n        self.n = n\n        self.i = 0\n    def __iter__(self):\n        return self\n    def __next__(self):\n        if self.i >= self.n:\n            raise StopIteration\n        self.i += 1\n        return self.i\n\nc = CountUp(3)\nprint(list(c), list(c))   # both calls produce a fresh iterator -> both full runs\n\nit = iter(c)\nprint(next(it), next(it), next(it))\ntry:\n    next(it)\nexcept StopIteration:\n    print(\"StopIteration after exhaustion, as expected\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "[1, 2, 3] [1, 2, 3]\n1 2 3\nStopIteration after exhaustion, as expected\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "A plain iterator object (not a fresh-iterable factory) gets *consumed*: iterating it twice the second time yields nothing, which is a common source of 'why is my data empty the second time I loop over it' bugs."
+    },
+    {
+      "type": "code",
+      "source": "numbers = iter([1, 2, 3])\nprint(\"first pass: \", list(numbers))\nprint(\"second pass:\", list(numbers), \" <- already exhausted, iterator has no reset\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "first pass:  [1, 2, 3]\nsecond pass: []  <- already exhausted, iterator has no reset\n"
+        }
+      ]
+    }
+  ],
+  "interview": "Frequently tested through a \"implement a custom iterable class\" exercise, which quietly checks several\nthings at once: does the candidate split `__iter__`/`__next__` correctly, do they remember to raise\n`StopIteration`, and — the detail most people miss — does their `__iter__` return a *fresh* iterator (so the\nobject can be looped over more than once) or `self` (which exhausts after one pass)? That last distinction\nis a great signal of real depth versus surface familiarity.",
+  "industryPractice": "Almost no production code hand-writes iterator classes anymore — generators (`yield`) are the idiomatic,\nfar more common way to implement custom iteration — but understanding the underlying protocol is essential\nfor reading library internals (how `itertools`, database cursors, or file objects behave) and for debugging\nthe recurring \"why can I only loop over this once\" bug, which is almost always an exhausted iterator being\nmistaken for a reusable iterable.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "04_dict_set_mutation_during_iteration",
+      "title": "dict/set size cannot change during iteration",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Iteration & generators",
+  "categoryLetter": "B",
+  "tier": "T1"
+}

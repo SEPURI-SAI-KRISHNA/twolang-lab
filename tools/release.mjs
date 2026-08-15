@@ -1,16 +1,18 @@
 // Generates the PUBLIC INDEX.md (what the deployed site is built from) as a trimmed
-// snapshot of INDEX.full.md (the permanent, complete progress record), based on which
-// topics have actually been "released" (committed/pushed) so far.
+// snapshot of INDEX.full.md (the permanent, complete progress record).
+//
+// A topic counts as "released" the moment its notebook is committed to git --
+// that's the real signal, since that's exactly what's present in the checkout
+// Cloudflare Pages builds from. No manual step: this runs automatically as part
+// of `npm run build` / `npm run dev` / `npm run content` (see web/package.json),
+// so pushing a notebook is the only thing you need to do.
 //
 // Usage:
-//   node tools/release.mjs                                   # regenerate INDEX.md from the current release set
-//   node tools/release.mjs add python/01_x java/01_y          # add topics to the release set, then regenerate
-//   node tools/release.mjs list                                # print the current release set
-//
-// After running this, also run (from web/): npm run content && npm run build
-// to regenerate the site's data/pages to match.
+//   node tools/release.mjs         # regenerate INDEX.md + relations.json from git state
+//   node tools/release.mjs list    # print the currently auto-detected release set
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -20,15 +22,17 @@ const FULL_INDEX = path.join(ROOT, "INDEX.full.md");
 const PUBLIC_INDEX = path.join(ROOT, "INDEX.md");
 const FULL_RELATIONS = path.join(ROOT, "relations.full.json");
 const PUBLIC_RELATIONS = path.join(ROOT, "relations.json");
-const RELEASED_FILE = path.join(ROOT, "RELEASED.json");
 
-function loadReleased() {
-  if (!existsSync(RELEASED_FILE)) return [];
-  return JSON.parse(readFileSync(RELEASED_FILE, "utf8"));
-}
-
-function saveReleased(list) {
-  writeFileSync(RELEASED_FILE, JSON.stringify(list, null, 2) + "\n");
+function getTrackedNotebooks() {
+  // Tracked in git (staged or committed), not just present on disk -- so notebooks
+  // generated locally ahead of time but not yet added/committed stay unreleased.
+  let out;
+  try {
+    out = execFileSync("git", ["ls-files", "python", "java"], { cwd: ROOT, encoding: "utf8" });
+  } catch {
+    return new Set(); // not a git checkout / git unavailable -- release nothing
+  }
+  return new Set(out.split("\n").filter((f) => f.endsWith(".ipynb")));
 }
 
 function generate(releasedSet) {
@@ -65,9 +69,8 @@ function generate(releasedSet) {
     const linkMatch = rest.match(linkRe);
     const itemText = linkMatch ? linkMatch[1] : rest;
     const notebookPath = linkMatch ? linkMatch[2] : null;
-    const slug = notebookPath ? notebookPath.replace(/\.ipynb$/, "") : null;
 
-    if (slug && releasedSet.has(slug)) {
+    if (notebookPath && releasedSet.has(notebookPath)) {
       out.push(`- [x] ${tier} ${itemText} → \`${notebookPath}\``);
     } else {
       out.push(`- [ ] ${tier} ${itemText}`);
@@ -77,39 +80,25 @@ function generate(releasedSet) {
   writeFileSync(PUBLIC_INDEX, out.join("\n"));
 }
 
-function generateRelations(releasedSet) {
+function generateRelations(releasedSlugSet) {
   const full = JSON.parse(readFileSync(FULL_RELATIONS, "utf8"));
-  const edges = full.edges.filter((e) => releasedSet.has(e.a) && releasedSet.has(e.b));
+  const edges = full.edges.filter((e) => releasedSlugSet.has(e.a) && releasedSlugSet.has(e.b));
   writeFileSync(PUBLIC_RELATIONS, JSON.stringify({ edges }, null, 2) + "\n");
   return edges.length;
 }
 
 function main() {
-  const args = process.argv.slice(2);
-  let released = loadReleased();
+  const trackedNotebooks = getTrackedNotebooks(); // e.g. "python/02_mutable_default_argument.ipynb"
+  const releasedSlugs = new Set([...trackedNotebooks].map((f) => f.replace(/\.ipynb$/, "")));
 
-  if (args[0] === "list") {
-    console.log(released.length ? released.join("\n") : "(nothing released yet)");
+  if (process.argv[2] === "list") {
+    console.log(releasedSlugs.size ? [...releasedSlugs].sort().join("\n") : "(nothing released yet)");
     return;
   }
 
-  if (args[0] === "add") {
-    const toAdd = args.slice(1);
-    if (toAdd.length === 0) {
-      console.error("usage: node tools/release.mjs add <lang/slug> [<lang/slug> ...]");
-      process.exit(1);
-    }
-    const set = new Set(released);
-    for (const slug of toAdd) set.add(slug);
-    released = [...set];
-    saveReleased(released);
-    console.log(`added ${toAdd.length} topic(s). total released: ${released.length}`);
-  }
-
-  const releasedSet = new Set(released);
-  generate(releasedSet);
-  const edgeCount = generateRelations(releasedSet);
-  console.log(`wrote INDEX.md with ${released.length} released topic(s), relations.json with ${edgeCount} edge(s).`);
+  generate(trackedNotebooks);
+  const edgeCount = generateRelations(releasedSlugs);
+  console.log(`wrote INDEX.md with ${releasedSlugs.size} released topic(s), relations.json with ${edgeCount} edge(s).`);
 }
 
 main();

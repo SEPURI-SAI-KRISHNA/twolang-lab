@@ -39,6 +39,20 @@
   "industryPractice": "Static analysis flags this by default in essentially every serious Java codebase's CI (SpotBugs'\n`ES_COMPARING_STRINGS_WITH_EQ`, and equivalent built-in IDE inspections in IntelliJ and Eclipse). Any team\nwithout that lint gate has almost certainly shipped this bug at least once — it's rare enough to catch in\nmanual review because it often *works* in casual testing (small literal strings get pooled) and only breaks\non strings built at runtime.",
   "related": [
     {
+      "language": "java",
+      "slug": "02_integer_autobox_cache",
+      "title": "The `Integer` autobox cache (-128..127)",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "language": "java",
+      "slug": "03_hashcode_equals_contract",
+      "title": "The `hashCode`/`equals` contract",
+      "kind": "related",
+      "label": null
+    },
+    {
       "language": "python",
       "slug": "01_identity_smallint_string_interning",
       "title": "`is` vs `==`, the small-int cache, and string interning",
