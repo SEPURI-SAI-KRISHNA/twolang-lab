@@ -80,8 +80,9 @@
         {
           "tier": "T1",
           "text": "generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory)",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "06_generators_basics",
+          "title": "Generators: lazy, one-shot, and why they save memory"
         },
         {
           "tier": "T2",
@@ -117,14 +118,16 @@
         {
           "tier": "T1",
           "text": "late-binding closures — the classic loop-variable-capture bug in list-of-lambdas",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "07_late_binding_closures",
+          "title": "Late-binding closures: the classic loop-variable-capture bug"
         },
         {
           "tier": "T1",
           "text": "positional-only (`/`) and keyword-only (`*`) parameters (PEP 570)",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "08_positional_keyword_only_params",
+          "title": "Positional-only (`/`) and keyword-only (`*`) parameters"
         },
         {
           "tier": "T1",
@@ -517,8 +520,9 @@
         {
           "tier": "T1",
           "text": "bounded wildcards, PECS (\"producer extends, consumer super\")",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "06_bounded_wildcards_pecs",
+          "title": "Bounded wildcards and PECS (\"Producer Extends, Consumer Super\")"
         },
         {
           "tier": "T2",
@@ -542,14 +546,16 @@
         {
           "tier": "T1",
           "text": "`List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "07_immutable_collections",
+          "title": "`List.of()` / `Map.of()` are truly immutable"
         },
         {
           "tier": "T1",
           "text": "fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`)",
-          "status": "todo",
-          "slug": null
+          "status": "done",
+          "slug": "08_fail_fast_iterators_cme",
+          "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire"
         },
         {
           "tier": "T1",

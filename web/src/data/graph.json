@@ -46,6 +46,33 @@
       "tier": "T1"
     },
     {
+      "id": "python/06_generators_basics",
+      "language": "python",
+      "slug": "06_generators_basics",
+      "title": "Generators: lazy, one-shot, and why they save memory",
+      "category": "Iteration & generators",
+      "categoryLetter": "B",
+      "tier": "T1"
+    },
+    {
+      "id": "python/07_late_binding_closures",
+      "language": "python",
+      "slug": "07_late_binding_closures",
+      "title": "Late-binding closures: the classic loop-variable-capture bug",
+      "category": "Functions & closures",
+      "categoryLetter": "C",
+      "tier": "T1"
+    },
+    {
+      "id": "python/08_positional_keyword_only_params",
+      "language": "python",
+      "slug": "08_positional_keyword_only_params",
+      "title": "Positional-only (`/`) and keyword-only (`*`) parameters",
+      "category": "Functions & closures",
+      "categoryLetter": "C",
+      "tier": "T1"
+    },
+    {
       "id": "java/01_equals_vs_eq_string_pool",
       "language": "java",
       "slug": "01_equals_vs_eq_string_pool",
@@ -89,12 +116,51 @@
       "category": "Generics",
       "categoryLetter": "B",
       "tier": "T1"
+    },
+    {
+      "id": "java/06_bounded_wildcards_pecs",
+      "language": "java",
+      "slug": "06_bounded_wildcards_pecs",
+      "title": "Bounded wildcards and PECS (\"Producer Extends, Consumer Super\")",
+      "category": "Generics",
+      "categoryLetter": "B",
+      "tier": "T1"
+    },
+    {
+      "id": "java/07_immutable_collections",
+      "language": "java",
+      "slug": "07_immutable_collections",
+      "title": "`List.of()` / `Map.of()` are truly immutable",
+      "category": "Collections framework",
+      "categoryLetter": "C",
+      "tier": "T1"
+    },
+    {
+      "id": "java/08_fail_fast_iterators_cme",
+      "language": "java",
+      "slug": "08_fail_fast_iterators_cme",
+      "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire",
+      "category": "Collections framework",
+      "categoryLetter": "C",
+      "tier": "T1"
     }
   ],
   "edges": [
     {
       "a": "python/02_mutable_default_argument",
+      "b": "python/07_late_binding_closures",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "python/02_mutable_default_argument",
       "b": "python/03_shallow_vs_deep_copy",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "python/05_iterator_protocol",
+      "b": "python/06_generators_basics",
       "kind": "related",
       "label": null
     },
@@ -123,10 +189,28 @@
       "label": null
     },
     {
+      "a": "java/05_type_erasure",
+      "b": "java/06_bounded_wildcards_pecs",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "a": "java/07_immutable_collections",
+      "b": "java/08_fail_fast_iterators_cme",
+      "kind": "related",
+      "label": null
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
       "label": "Identity vs. equality, and reference caching"
+    },
+    {
+      "a": "python/04_dict_set_mutation_during_iteration",
+      "b": "java/08_fail_fast_iterators_cme",
+      "kind": "compare",
+      "label": "Mutating a collection while iterating it"
     }
   ]
 }

@@ -27,15 +27,15 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### B. Iteration & generators
 - [x] T1 dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change → `python/04_dict_set_mutation_during_iteration.ipynb`
 - [x] T1 iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once → `python/05_iterator_protocol.ipynb`
-- [ ] T1 generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory)
+- [x] T1 generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory) → `python/06_generators_basics.ipynb`
 - [ ] T2 `yield from`, delegation, and generator `send()` / `throw()` / `close()`
 - [ ] T2 `itertools` deep-dive: `islice`, `tee`, `groupby` (needs sorted input!), `chain`, `accumulate`, `pairwise`
 - [ ] T2 PEP 479: `StopIteration` raised inside a generator becomes `RuntimeError`, not silent stop
 - [ ] T3 async generators / `__aiter__`/`__anext__` vs regular generators
 
 ### C. Functions & closures
-- [ ] T1 late-binding closures — the classic loop-variable-capture bug in list-of-lambdas
-- [ ] T1 positional-only (`/`) and keyword-only (`*`) parameters (PEP 570)
+- [x] T1 late-binding closures — the classic loop-variable-capture bug in list-of-lambdas → `python/07_late_binding_closures.ipynb`
+- [x] T1 positional-only (`/`) and keyword-only (`*`) parameters (PEP 570) → `python/08_positional_keyword_only_params.ipynb`
 - [ ] T1 `*args`/`**kwargs` unpacking edge cases, argument-order rules
 - [ ] T1 `functools.wraps`, decorators that lose metadata without it, decorators-with-arguments (double nesting)
 - [ ] T2 `functools.lru_cache`/`cache`, `singledispatch`, `partial`, `reduce`
@@ -111,13 +111,13 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### B. Generics
 - [x] T1 type erasure — why you can't do `new T[]` or `instanceof List<String>` → `java/05_type_erasure.ipynb`
-- [ ] T1 bounded wildcards, PECS ("producer extends, consumer super")
+- [x] T1 bounded wildcards, PECS ("producer extends, consumer super") → `java/06_bounded_wildcards_pecs.ipynb`
 - [ ] T2 unchecked warnings, heap pollution with varargs + generics
 - [ ] T3 generic method type inference edge cases (target typing)
 
 ### C. Collections framework
-- [ ] T1 `List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts
-- [ ] T1 fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`)
+- [x] T1 `List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts → `java/07_immutable_collections.ipynb`
+- [x] T1 fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`) → `java/08_fail_fast_iterators_cme.ipynb`
 - [ ] T1 `Comparable` vs `Comparator`, `Comparator.comparing(...).thenComparing(...)` chains
 - [ ] T2 `HashMap` vs `LinkedHashMap` (access-order mode!) vs `TreeMap` ordering guarantees
 - [ ] T2 `Collectors`: `groupingBy`, `partitioningBy`, `teeing`, `toUnmodifiableList`
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 10 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 16 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._

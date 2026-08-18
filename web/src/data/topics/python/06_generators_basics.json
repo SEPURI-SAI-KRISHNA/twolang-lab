@@ -1,0 +1,48 @@
+{
+  "language": "python",
+  "slug": "06_generators_basics",
+  "title": "Generators: lazy, one-shot, and why they save memory",
+  "notebookPath": "python/06_generators_basics.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Generators: lazy, one-shot, and why they save memory\n\nA function with `yield` in its body is a generator function; calling it doesn't run the body — it returns a\ngenerator object (an iterator) that runs the body lazily, one `yield` at a time, on each `next()`. Compare\nmemory behavior: a list comprehension builds the *entire* list up front; a generator expression produces\nvalues on demand and never holds more than one at a time."
+    },
+    {
+      "type": "code",
+      "source": "def countdown(n):\n    print(f\"  (starting countdown from {n})\")\n    while n > 0:\n        yield n\n        n -= 1\n    print(\"  (countdown done)\")\n\ngen = countdown(3)\nprint(\"generator created, body has NOT run yet:\", gen)\nprint(\"first next():\", next(gen))\nprint(\"second next():\", next(gen))\nprint(\"third next():\", next(gen))\ntry:\n    next(gen)\nexcept StopIteration:\n    print(\"StopIteration once exhausted\")\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "generator created, body has NOT run yet: <generator object countdown at 0x7b18d0d13850>\n  (starting countdown from 3)\nfirst next(): 3\nsecond next(): 2\nthird next(): 1\n  (countdown done)\nStopIteration once exhausted\n"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "source": "import sys\n\nlist_comp = [x * x for x in range(100_000)]\ngen_exp = (x * x for x in range(100_000))\n\nprint(\"list comprehension size:\", sys.getsizeof(list_comp), \"bytes\")\nprint(\"generator expression size:\", sys.getsizeof(gen_exp), \"bytes  <- constant, regardless of range size\")\nprint(\"sum via generator (never materializes the full list):\", sum(x * x for x in range(100_000)))\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "list comprehension size: 800984 bytes\ngenerator expression size: 200 bytes  <- constant, regardless of range size\nsum via generator (never materializes the full list): 333328333350000\n"
+        }
+      ]
+    }
+  ],
+  "interview": "A staple \"what will this print, and in what order?\" question, because generator laziness is one of the\ncleanest ways to test whether someone actually traces execution rather than pattern-matching on syntax.\nGenerator-writing exercises (e.g. \"write a generator for the Fibonacci sequence\") are popular precisely\nbecause they test syntax knowledge and an understanding of the memory/laziness tradeoff at the same time.",
+  "industryPractice": "Generators are everywhere in production Python: streaming large files or paginated API responses line by\nline, ETL pipelines, and ORM query iteration (Django, SQLAlchemy) all lean on them specifically to avoid\nmaterializing an entire dataset in memory at once. In code review, an eager `list(...)` wrapped around what\ncould be a generator expression is a common efficiency comment, especially in code that processes large or\nunbounded input.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "05_iterator_protocol",
+      "title": "The iterator protocol: why `for` calls `iter()` exactly once",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Iteration & generators",
+  "categoryLetter": "B",
+  "tier": "T1"
+}

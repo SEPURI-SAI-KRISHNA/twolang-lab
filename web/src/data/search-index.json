@@ -40,6 +40,30 @@
     "text": "iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once"
   },
   {
+    "language": "python",
+    "slug": "06_generators_basics",
+    "title": "Generators: lazy, one-shot, and why they save memory",
+    "category": "Iteration & generators",
+    "tier": "T1",
+    "text": "generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory)"
+  },
+  {
+    "language": "python",
+    "slug": "07_late_binding_closures",
+    "title": "Late-binding closures: the classic loop-variable-capture bug",
+    "category": "Functions & closures",
+    "tier": "T1",
+    "text": "late-binding closures — the classic loop-variable-capture bug in list-of-lambdas"
+  },
+  {
+    "language": "python",
+    "slug": "08_positional_keyword_only_params",
+    "title": "Positional-only (`/`) and keyword-only (`*`) parameters",
+    "category": "Functions & closures",
+    "tier": "T1",
+    "text": "positional-only (`/`) and keyword-only (`*`) parameters (PEP 570)"
+  },
+  {
     "language": "java",
     "slug": "01_equals_vs_eq_string_pool",
     "title": "`==` vs `.equals()`, and the String constant pool",
@@ -78,5 +102,29 @@
     "category": "Generics",
     "tier": "T1",
     "text": "type erasure — why you can't do `new T[]` or `instanceof List<String>`"
+  },
+  {
+    "language": "java",
+    "slug": "06_bounded_wildcards_pecs",
+    "title": "Bounded wildcards and PECS (\"Producer Extends, Consumer Super\")",
+    "category": "Generics",
+    "tier": "T1",
+    "text": "bounded wildcards, PECS (\"producer extends, consumer super\")"
+  },
+  {
+    "language": "java",
+    "slug": "07_immutable_collections",
+    "title": "`List.of()` / `Map.of()` are truly immutable",
+    "category": "Collections framework",
+    "tier": "T1",
+    "text": "`List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts"
+  },
+  {
+    "language": "java",
+    "slug": "08_fail_fast_iterators_cme",
+    "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire",
+    "category": "Collections framework",
+    "tier": "T1",
+    "text": "fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`)"
   }
 ]

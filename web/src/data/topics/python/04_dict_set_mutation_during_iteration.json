@@ -44,6 +44,13 @@
       "title": "The iterator protocol: why `for` calls `iter()` exactly once",
       "kind": "related",
       "label": null
+    },
+    {
+      "language": "java",
+      "slug": "08_fail_fast_iterators_cme",
+      "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire",
+      "kind": "compare",
+      "label": "Mutating a collection while iterating it"
     }
   ],
   "category": "Iteration & generators",

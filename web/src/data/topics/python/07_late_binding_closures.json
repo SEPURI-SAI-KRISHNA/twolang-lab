@@ -1,0 +1,37 @@
+{
+  "language": "python",
+  "slug": "07_late_binding_closures",
+  "title": "Late-binding closures: the classic loop-variable-capture bug",
+  "notebookPath": "python/07_late_binding_closures.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Late-binding closures: the classic loop-variable-capture bug\n\nA closure captures the *variable*, not its value at closure-creation time. Since Python's `for` loop reuses\nthe same variable name on every iteration, every lambda created inside the loop shares that one variable —\nand by the time any of them actually runs, the loop has already finished and the variable holds its final\nvalue. This bites nearly everyone at least once, especially building lists of callbacks."
+    },
+    {
+      "type": "code",
+      "source": "funcs = [lambda: i for i in range(3)]\nprint(\"naive:\", [f() for f in funcs], \" <- all see the FINAL value of i (2), not 0,1,2\")\n\nfuncs_fixed = [lambda i=i: i for i in range(3)]\nprint(\"fixed via default-arg capture:\", [f() for f in funcs_fixed])\n\ndef make_fn(i):\n    return lambda: i\nfuncs_fixed2 = [make_fn(i) for i in range(3)]\nprint(\"fixed via factory function:  \", [f() for f in funcs_fixed2])\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "naive: [2, 2, 2]  <- all see the FINAL value of i (2), not 0,1,2\nfixed via default-arg capture: [0, 1, 2]\nfixed via factory function:   [0, 1, 2]\n"
+        }
+      ]
+    }
+  ],
+  "interview": "The \"list of lambdas in a loop\" bug is one of the most-asked Python gotcha questions, because it's subtle,\ngenuinely common, and has a clean, testable fix — which makes it a great springboard into a deeper\nconversation about closures and variable scoping rather than a pure trivia check.",
+  "industryPractice": "This shows up realistically in GUI/event-handler registration code (binding callbacks inside a loop) and in\ndynamically generated test cases — both real, documented bug classes with canonical Stack Overflow answers.\nModern linters catch it too: ruff's `B023` specifically flags \"function defined in a loop uses a loop\nvariable,\" turning what used to be a purely experiential lesson into something CI can catch before review.",
+  "related": [
+    {
+      "language": "python",
+      "slug": "02_mutable_default_argument",
+      "title": "The mutable default argument trap",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Functions & closures",
+  "categoryLetter": "C",
+  "tier": "T1"
+}

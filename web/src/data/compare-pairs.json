@@ -11,5 +11,18 @@
       "title": "`==` vs `.equals()`, and the String constant pool"
     },
     "label": "Identity vs. equality, and reference caching"
+  },
+  {
+    "a": {
+      "language": "python",
+      "slug": "04_dict_set_mutation_during_iteration",
+      "title": "dict/set size cannot change during iteration"
+    },
+    "b": {
+      "language": "java",
+      "slug": "08_fail_fast_iterators_cme",
+      "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire"
+    },
+    "label": "Mutating a collection while iterating it"
   }
 ]

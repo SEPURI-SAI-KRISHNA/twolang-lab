@@ -1,0 +1,47 @@
+{
+  "language": "java",
+  "slug": "07_immutable_collections",
+  "title": "`List.of()` / `Map.of()` are truly immutable",
+  "notebookPath": "java/07_immutable_collections.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# `List.of()` / `Map.of()` are truly immutable\n\nUnlike `Collections.unmodifiableList(...)` wrapping a still-mutable backing list, `List.of(...)` /\n`Map.of(...)` / `Set.of(...)` (Java 9+) return collections that reject ANY structural mutation, throwing\n`UnsupportedOperationException` — including from things like `sort()` or `replaceAll()`, not just `add`."
+    },
+    {
+      "type": "code",
+      "source": "import java.util.*;\n\nList<Integer> imm = List.of(1, 2, 3);\ntry {\n    imm.add(4);\n} catch (UnsupportedOperationException e) {\n    System.out.println(\"add(): \" + e);\n}\ntry {\n    imm.set(0, 99);\n} catch (UnsupportedOperationException e) {\n    System.out.println(\"set(): \" + e);\n}\n\nMap<String, Integer> immMap = Map.of(\"a\", 1, \"b\", 2);\ntry {\n    immMap.put(\"c\", 3);\n} catch (UnsupportedOperationException e) {\n    System.out.println(\"Map put(): \" + e);\n}\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "add(): java.lang.UnsupportedOperationException\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "set(): java.lang.UnsupportedOperationException\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "Map put(): java.lang.UnsupportedOperationException\n"
+        }
+      ]
+    }
+  ],
+  "interview": "Comes up as \"what's the actual difference between `List.of()` and `Collections.unmodifiableList()`?\" —\ntesting whether a candidate knows the newer factory methods are *genuinely* immutable, not just an\nunmodifiable *view* over a backing list that something else can still mutate out from under you. That\ndistinction matters directly for defensive-copying discussions.",
+  "industryPractice": "`List.of()`/`Map.of()` are now the default choice for returning read-only collections from public APIs in\nmodern Java, specifically because they fail fast and loudly with `UnsupportedOperationException` on\naccidental mutation, rather than the silent-drift risk of handing back a plain `ArrayList` and hoping callers\nrespect an unwritten \"don't mutate this\" convention.",
+  "related": [
+    {
+      "language": "java",
+      "slug": "08_fail_fast_iterators_cme",
+      "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Collections framework",
+  "categoryLetter": "C",
+  "tier": "T1"
+}

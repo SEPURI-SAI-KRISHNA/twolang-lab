@@ -1,0 +1,74 @@
+{
+  "language": "java",
+  "slug": "08_fail_fast_iterators_cme",
+  "title": "Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire",
+  "notebookPath": "java/08_fail_fast_iterators_cme.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Fail-fast iterators: `ConcurrentModificationException` — and when it DOESN'T fire\n\n`ArrayList`'s iterator checks a `modCount` on every `next()` call and throws `ConcurrentModificationException`\nif the list was structurally modified outside the iterator. The commonly-missed detail: this check only runs\ninside `next()`. If you remove an element such that `hasNext()` becomes false right after, the loop ends\n*before* `next()` is called again — so the exception silently doesn't fire, and you get a subtly-wrong\nresult instead of a loud error. This is real, verified behavior, not a hypothetical."
+    },
+    {
+      "type": "code",
+      "source": "import java.util.*;\n\nSystem.out.println(\"case A: [1,2,3], remove value 2 (second-to-last) mid for-each\");\nList<Integer> a = new ArrayList<>(List.of(1, 2, 3));\ntry {\n    for (Integer v : a) { if (v == 2) a.remove(v); }\n    System.out.println(\"  NO exception thrown. list silently ends up = \" + a + \"  <-- the trap\");\n} catch (ConcurrentModificationException e) {\n    System.out.println(\"  CME: \" + e);\n}\n\nSystem.out.println(\"case B: [1,2,3,4], remove value 2 (NOT second-to-last)\");\nList<Integer> b = new ArrayList<>(List.of(1, 2, 3, 4));\ntry {\n    for (Integer v : b) { if (v == 2) b.remove(v); }\n    System.out.println(\"  no exception. list now = \" + b);\n} catch (ConcurrentModificationException e) {\n    System.out.println(\"  CME: \" + e);\n}\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "case A: [1,2,3], remove value 2 (second-to-last) mid for-each\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "  NO exception thrown. list silently ends up = [1, 3]  <-- the trap\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "case B: [1,2,3,4], remove value 2 (NOT second-to-last)\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "  CME: java.util.ConcurrentModificationException\n"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "source": "The actual correct fix — always use the iterator's own `remove()`, which updates `modCount` in sync so no mismatch is ever detected:"
+    },
+    {
+      "type": "code",
+      "source": "List<Integer> d = new ArrayList<>(List.of(1, 2, 3, 4));\nIterator<Integer> it = d.iterator();\nwhile (it.hasNext()) {\n    if (it.next() == 2) it.remove();\n}\nSystem.out.println(\"Iterator.remove() result: \" + d);\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "Iterator.remove() result: [1, 3, 4]\n"
+        }
+      ]
+    }
+  ],
+  "interview": "A classic \"find the bug\" exercise — a for-each loop that calls `list.remove()` inside it — but the *strong*\nversion of this question (the one this topic demonstrates) probes whether the candidate knows fail-fast\ndetection isn't 100% reliable. A candidate who confidently says \"that always throws `CME`\" is exposing\nexactly the kind of half-knowledge that turns into a real, position-dependent production bug.",
+  "industryPractice": "This is a genuinely common production bug, and an unsettling one because it's *position-dependent* — it\nmight pass a quick manual test and only misbehave on certain input sizes, which is why it sometimes survives\ninto production as a \"flaky\" issue before someone traces it back. The correct, idiomatic fix —\n`Iterator.remove()` or `Collection.removeIf()` — is something any experienced Java reviewer checks for on\nsight in a loop that mutates the collection it's iterating.",
+  "related": [
+    {
+      "language": "java",
+      "slug": "07_immutable_collections",
+      "title": "`List.of()` / `Map.of()` are truly immutable",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "language": "python",
+      "slug": "04_dict_set_mutation_during_iteration",
+      "title": "dict/set size cannot change during iteration",
+      "kind": "compare",
+      "label": "Mutating a collection while iterating it"
+    }
+  ],
+  "category": "Collections framework",
+  "categoryLetter": "C",
+  "tier": "T1"
+}

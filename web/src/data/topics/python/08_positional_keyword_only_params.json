@@ -1,0 +1,29 @@
+{
+  "language": "python",
+  "slug": "08_positional_keyword_only_params",
+  "title": "Positional-only (`/`) and keyword-only (`*`) parameters",
+  "notebookPath": "python/08_positional_keyword_only_params.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Positional-only (`/`) and keyword-only (`*`) parameters\n\n`def f(a, b, /, c, d, *, e, f)`: everything before `/` MUST be passed positionally; everything after `*`\nMUST be passed by keyword; `c, d` in the middle can be either. This is how stdlib functions like `len()`\nlock down their signature (you can't call `len(obj=x)`), and it's increasingly used in library code to keep\nparameter names as an implementation detail that can change without breaking callers."
+    },
+    {
+      "type": "code",
+      "source": "def f(a, b, /, c, d, *, e, f):\n    return (a, b, c, d, e, f)\n\nprint(f(1, 2, 3, d=4, e=5, f=6))\nprint(f(1, 2, c=3, d=4, e=5, f=6))\n\ntry:\n    f(a=1, b=2, c=3, d=4, e=5, f=6)   # a, b are positional-only\nexcept TypeError as ex:\n    print(\"TypeError:\", ex)\n\ntry:\n    f(1, 2, 3, 4, 5, 6)   # e, f are keyword-only\nexcept TypeError as ex:\n    print(\"TypeError:\", ex)\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "(1, 2, 3, 4, 5, 6)\n(1, 2, 3, 4, 5, 6)\nTypeError: f() got some positional-only arguments passed as keyword arguments: 'a, b'\nTypeError: f() takes 4 positional arguments but 6 were given\n"
+        }
+      ]
+    }
+  ],
+  "interview": "Less a \"gotcha\" and more a \"how current is your Python\" signal — a candidate who knows `/` and `*` syntax\nand can explain *why* an API designer would reach for them (freedom to rename parameters internally without\nbreaking callers who pass positionally) shows they think about API design deliberately, not just consume\nAPIs other people designed.",
+  "industryPractice": "The standard library itself uses positional-only parameters post-3.8 specifically to keep implementation\ndetails out of the public contract (`dict.get`'s signature is a common example). API-design-conscious teams\nadopt the same convention for their own public functions for the same reason: parameter *names* become a\nfree-to-change internal detail instead of an accidental part of the API surface that breaking-change\npolicies have to account for.",
+  "related": [],
+  "category": "Functions & closures",
+  "categoryLetter": "C",
+  "tier": "T1"
+}

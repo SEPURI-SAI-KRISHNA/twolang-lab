@@ -40,6 +40,13 @@
   "related": [
     {
       "language": "python",
+      "slug": "07_late_binding_closures",
+      "title": "Late-binding closures: the classic loop-variable-capture bug",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "language": "python",
       "slug": "03_shallow_vs_deep_copy",
       "title": "Shallow vs deep copy",
       "kind": "related",

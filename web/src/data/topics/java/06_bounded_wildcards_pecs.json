@@ -1,0 +1,47 @@
+{
+  "language": "java",
+  "slug": "06_bounded_wildcards_pecs",
+  "title": "Bounded wildcards and PECS (\"Producer Extends, Consumer Super\")",
+  "notebookPath": "java/06_bounded_wildcards_pecs.ipynb",
+  "cells": [
+    {
+      "type": "markdown",
+      "source": "# Bounded wildcards and PECS (\"Producer Extends, Consumer Super\")\n\n`List<? extends Number>` — you can **read** `Number`s out of it, but can't add anything (the compiler\ndoesn't know the *exact* subtype, so any `add` could be unsafe). `List<? super Integer>` — you can **write**\n`Integer`s into it, but reads only guarantee `Object`. Rule of thumb: if a parameter only produces values for\nyou to consume, use `extends`; if it only consumes values you hand it, use `super`."
+    },
+    {
+      "type": "code",
+      "source": "import java.util.*;\n\n// consumer of Integer -> use `super`\nstatic void addNumbers(List<? super Integer> dst, List<Integer> src) {\n    for (Integer i : src) dst.add(i);\n}\n\n// producer of Number -> use `extends`\nstatic double sumNumbers(List<? extends Number> src) {\n    double total = 0;\n    for (Number n : src) total += n.doubleValue();\n    return total;\n}\n\nList<Object> objs = new ArrayList<>();\naddNumbers(objs, List.of(1, 2, 3));\nSystem.out.println(\"PECS 'super' (write Integers into List<Object>): \" + objs);\n\nSystem.out.println(\"PECS 'extends' (read Numbers from List<Double>): \" + sumNumbers(List.of(1.5, 2.5, 3.0)));\nSystem.out.println(\"same method also accepts List<Integer>:          \" + sumNumbers(List.of(1, 2, 3)));\n",
+      "outputs": [
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "PECS 'super' (write Integers into List<Object>): [1, 2, 3]\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "PECS 'extends' (read Numbers from List<Double>): 7.0\n"
+        },
+        {
+          "kind": "stream",
+          "stream": "stdout",
+          "text": "same method also accepts List<Integer>:          6.0\n"
+        }
+      ]
+    }
+  ],
+  "interview": "Frequently tested by asking a candidate to write a generic copy or transform utility's signature, to see\nwhether they reach for `? extends`/`? super` correctly rather than over-constraining with an exact type\nparameter. It's a strong, practical signal of real API-design experience versus textbook generics knowledge\nthat never got applied to an actual method signature.",
+  "industryPractice": "The `java.util.Collections` API (`copy`, `max`, `addAll`) is essentially a PECS reference implementation, and\nwell-designed generic library methods across the ecosystem follow the same shape. In code review on\nlibrary-quality Java code, an overly rigid generic signature that forces callers into unnecessary casts or\nduplicate overloads is a routine, specific comment — \"this should probably be `? extends T`.\"",
+  "related": [
+    {
+      "language": "java",
+      "slug": "05_type_erasure",
+      "title": "Generics are erased at runtime",
+      "kind": "related",
+      "label": null
+    }
+  ],
+  "category": "Generics",
+  "categoryLetter": "B",
+  "tier": "T1"
+}

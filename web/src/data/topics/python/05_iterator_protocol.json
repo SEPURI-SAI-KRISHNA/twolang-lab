@@ -40,6 +40,13 @@
   "related": [
     {
       "language": "python",
+      "slug": "06_generators_basics",
+      "title": "Generators: lazy, one-shot, and why they save memory",
+      "kind": "related",
+      "label": null
+    },
+    {
+      "language": "python",
       "slug": "04_dict_set_mutation_during_iteration",
       "title": "dict/set size cannot change during iteration",
       "kind": "related",
