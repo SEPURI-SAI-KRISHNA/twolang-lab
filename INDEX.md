@@ -36,7 +36,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### C. Functions & closures
 - [x] T1 late-binding closures — the classic loop-variable-capture bug in list-of-lambdas → `python/07_late_binding_closures.ipynb`
 - [x] T1 positional-only (`/`) and keyword-only (`*`) parameters (PEP 570) → `python/08_positional_keyword_only_params.ipynb`
-- [ ] T1 `*args`/`**kwargs` unpacking edge cases, argument-order rules
+- [x] T1 `*args`/`**kwargs` unpacking edge cases, argument-order rules → `python/09_args_kwargs_unpacking.ipynb`
 - [ ] T1 `functools.wraps`, decorators that lose metadata without it, decorators-with-arguments (double nesting)
 - [ ] T2 `functools.lru_cache`/`cache`, `singledispatch`, `partial`, `reduce`
 - [ ] T2 `nonlocal` vs `global`, function objects carrying their own `__dict__`/attributes
@@ -118,7 +118,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### C. Collections framework
 - [x] T1 `List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts → `java/07_immutable_collections.ipynb`
 - [x] T1 fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`) → `java/08_fail_fast_iterators_cme.ipynb`
-- [ ] T1 `Comparable` vs `Comparator`, `Comparator.comparing(...).thenComparing(...)` chains
+- [x] T1 `Comparable` vs `Comparator`, `Comparator.comparing(...).thenComparing(...)` chains → `java/09_comparable_vs_comparator.ipynb`
 - [ ] T2 `HashMap` vs `LinkedHashMap` (access-order mode!) vs `TreeMap` ordering guarantees
 - [ ] T2 `Collectors`: `groupingBy`, `partitioningBy`, `teeing`, `toUnmodifiableList`
 - [ ] T3 `EnumMap`/`EnumSet` — why they're meaningfully faster than generic collections for enum keys
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 16 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 18 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._

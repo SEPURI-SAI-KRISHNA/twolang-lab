@@ -21,6 +21,11 @@
       "kind": "related"
     },
     {
+      "a": "python/08_positional_keyword_only_params",
+      "b": "python/09_args_kwargs_unpacking",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
