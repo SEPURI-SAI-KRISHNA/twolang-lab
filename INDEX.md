@@ -37,7 +37,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 late-binding closures — the classic loop-variable-capture bug in list-of-lambdas → `python/07_late_binding_closures.ipynb`
 - [x] T1 positional-only (`/`) and keyword-only (`*`) parameters (PEP 570) → `python/08_positional_keyword_only_params.ipynb`
 - [x] T1 `*args`/`**kwargs` unpacking edge cases, argument-order rules → `python/09_args_kwargs_unpacking.ipynb`
-- [ ] T1 `functools.wraps`, decorators that lose metadata without it, decorators-with-arguments (double nesting)
+- [x] T1 `functools.wraps`, decorators that lose metadata without it, decorators-with-arguments (double nesting) → `python/10_functools_wraps_decorators.ipynb`
 - [ ] T2 `functools.lru_cache`/`cache`, `singledispatch`, `partial`, `reduce`
 - [ ] T2 `nonlocal` vs `global`, function objects carrying their own `__dict__`/attributes
 - [ ] T3 decorator stacking order vs application order (bottom-up apply, top-down execute)
@@ -124,7 +124,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 `EnumMap`/`EnumSet` — why they're meaningfully faster than generic collections for enum keys
 
 ### D. Streams & functional interfaces
-- [ ] T1 stream laziness — nothing runs until a terminal operation, short-circuiting with `findFirst`/`anyMatch`
+- [x] T1 stream laziness — nothing runs until a terminal operation, short-circuiting with `findFirst`/`anyMatch` → `java/10_stream_laziness.ipynb`
 - [ ] T1 `Optional` — `orElse` (always evaluated) vs `orElseGet` (lazy), and why `Optional` fields are an anti-pattern
 - [ ] T1 method references, all four kinds (static, bound instance, unbound instance, constructor)
 - [ ] T2 functional interface composition: `Function.andThen`/`compose`, `Predicate.and`/`or`/`negate`
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 18 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 20 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._

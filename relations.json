@@ -26,6 +26,11 @@
       "kind": "related"
     },
     {
+      "a": "python/09_args_kwargs_unpacking",
+      "b": "python/10_functools_wraps_decorators",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
@@ -51,6 +56,11 @@
       "kind": "related"
     },
     {
+      "a": "java/09_comparable_vs_comparator",
+      "b": "java/10_stream_laziness",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
@@ -61,6 +71,12 @@
       "b": "java/08_fail_fast_iterators_cme",
       "kind": "compare",
       "label": "Mutating a collection while iterating it"
+    },
+    {
+      "a": "python/06_generators_basics",
+      "b": "java/10_stream_laziness",
+      "kind": "compare",
+      "label": "Lazy evaluation: nothing runs until you pull a value"
     }
   ]
 }
