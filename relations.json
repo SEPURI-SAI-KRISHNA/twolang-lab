@@ -61,6 +61,11 @@
       "kind": "related"
     },
     {
+      "a": "java/11_optional_orelse_vs_orelseget",
+      "b": "java/10_stream_laziness",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
