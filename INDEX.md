@@ -126,7 +126,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### D. Streams & functional interfaces
 - [x] T1 stream laziness — nothing runs until a terminal operation, short-circuiting with `findFirst`/`anyMatch` → `java/10_stream_laziness.ipynb`
 - [x] T1 `Optional` — `orElse` (always evaluated) vs `orElseGet` (lazy), and why `Optional` fields are an anti-pattern → `java/11_optional_orelse_vs_orelseget.ipynb`
-- [ ] T1 method references, all four kinds (static, bound instance, unbound instance, constructor)
+- [x] T1 method references, all four kinds (static, bound instance, unbound instance, constructor) → `java/12_method_references.ipynb`
 - [ ] T2 functional interface composition: `Function.andThen`/`compose`, `Predicate.and`/`or`/`negate`
 - [ ] T2 parallel streams: common `ForkJoinPool`, when it helps vs silently hurts, ordering pitfalls
 - [ ] T3 stateful lambdas in streams (mutating external state) and why it silently breaks under parallel
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 23 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 24 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
