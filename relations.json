@@ -82,6 +82,12 @@
       "b": "java/10_stream_laziness",
       "kind": "compare",
       "label": "Lazy evaluation: nothing runs until you pull a value"
+    },
+    {
+      "a": "python/12_eq_hash_contract",
+      "b": "java/03_hashcode_equals_contract",
+      "kind": "compare",
+      "label": "The equality/hash-code contract for hash-based collections"
     }
   ]
 }

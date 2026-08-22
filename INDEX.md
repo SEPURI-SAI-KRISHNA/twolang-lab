@@ -44,7 +44,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### D. Classes & OOP internals
 - [x] T1 `@property`, `@staticmethod`, `@classmethod` — and the descriptor protocol underneath all three → `python/11_property_staticmethod_classmethod_descriptors.ipynb`
-- [ ] T1 `__eq__`/`__hash__` contract — why overriding one without the other breaks sets/dicts
+- [x] T1 `__eq__`/`__hash__` contract — why overriding one without the other breaks sets/dicts → `python/12_eq_hash_contract.ipynb`
 - [ ] T1 `__repr__` vs `__str__`, and why every class should define `__repr__`
 - [ ] T1 context managers: `__enter__`/`__exit__`, `contextlib.contextmanager`, `ExitStack`
 - [ ] T1 dataclasses: `field(default_factory=...)`, `__post_init__`, `frozen=True`, generated `__eq__`/`__order__`
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 22 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 23 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
