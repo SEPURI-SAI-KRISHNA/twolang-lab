@@ -132,7 +132,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 stateful lambdas in streams (mutating external state) and why it silently breaks under parallel
 
 ### E. Concurrency
-- [ ] T1 `synchronized` (intrinsic locks), `volatile` — visibility vs atomicity (why `volatile int` doesn't fix `count++`)
+- [x] T1 `synchronized` (intrinsic locks), `volatile` — visibility vs atomicity (why `volatile int` doesn't fix `count++`) → `java/13_synchronized_volatile.ipynb`
 - [ ] T1 virtual threads (Project Loom, Java 21) vs platform threads — what actually changes
 - [ ] T2 `CompletableFuture` chaining (`thenApply`/`thenCompose`/`thenCombine`), sync vs async variants
 - [ ] T2 `ThreadLocal` and the classic thread-pool memory leak
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 25 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 26 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
