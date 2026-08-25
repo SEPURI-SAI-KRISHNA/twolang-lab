@@ -71,6 +71,11 @@
       "kind": "related"
     },
     {
+      "a": "java/13_synchronized_volatile",
+      "b": "java/14_virtual_threads",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
