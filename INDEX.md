@@ -140,7 +140,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 Java Memory Model happens-before relationships (what actually guarantees visibility across threads)
 
 ### F. Exceptions
-- [ ] T1 checked vs unchecked exceptions — the actual compiler-enforced difference
+- [x] T1 checked vs unchecked exceptions — the actual compiler-enforced difference → `java/15_checked_unchecked_exceptions.ipynb`
 - [ ] T1 try-with-resources, `AutoCloseable`, suppressed exceptions
 - [ ] T2 `finally` silently swallowing a `return`/exception from `try` (the gotcha, deliberately shown)
 - [ ] T3 exception chaining via `initCause`/constructor, preserving root cause across layers
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 28 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 29 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
