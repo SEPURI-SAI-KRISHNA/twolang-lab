@@ -31,6 +31,11 @@
       "kind": "related"
     },
     {
+      "a": "python/12_eq_hash_contract",
+      "b": "python/15_dataclasses",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
@@ -98,6 +103,12 @@
       "b": "java/03_hashcode_equals_contract",
       "kind": "compare",
       "label": "The equality/hash-code contract for hash-based collections"
+    },
+    {
+      "a": "python/15_dataclasses",
+      "b": "java/04_records_basics",
+      "kind": "compare",
+      "label": "Boilerplate-free value classes with generated equals/hashCode"
     }
   ]
 }
