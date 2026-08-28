@@ -141,7 +141,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### F. Exceptions
 - [x] T1 checked vs unchecked exceptions — the actual compiler-enforced difference → `java/15_checked_unchecked_exceptions.ipynb`
-- [ ] T1 try-with-resources, `AutoCloseable`, suppressed exceptions
+- [x] T1 try-with-resources, `AutoCloseable`, suppressed exceptions → `java/16_try_with_resources.ipynb`
 - [ ] T2 `finally` silently swallowing a `return`/exception from `try` (the gotcha, deliberately shown)
 - [ ] T3 exception chaining via `initCause`/constructor, preserving root cause across layers
 
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 30 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 31 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._

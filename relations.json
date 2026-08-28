@@ -81,6 +81,11 @@
       "kind": "related"
     },
     {
+      "a": "java/15_checked_unchecked_exceptions",
+      "b": "java/16_try_with_resources",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
@@ -103,6 +108,12 @@
       "b": "java/03_hashcode_equals_contract",
       "kind": "compare",
       "label": "The equality/hash-code contract for hash-based collections"
+    },
+    {
+      "a": "python/14_context_managers",
+      "b": "java/16_try_with_resources",
+      "kind": "compare",
+      "label": "Guaranteed cleanup, even when the body throws"
     },
     {
       "a": "python/15_dataclasses",
