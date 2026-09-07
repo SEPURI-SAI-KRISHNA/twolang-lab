@@ -56,7 +56,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### E. Typing & modern syntax
 - [x] T1 walrus operator `:=` and where it actually improves code → `python/16_walrus_operator.ipynb`
-- [ ] T1 `match`/`case` structural pattern matching (PEP 634), including guard clauses and class patterns
+- [x] T1 `match`/`case` structural pattern matching (PEP 634), including guard clauses and class patterns → `python/17_match_case_pattern_matching.ipynb`
 - [ ] T1 f-string `=` debug specifier and the format-spec mini-language
 - [ ] T2 `Protocol` (structural typing, PEP 544) vs ABC (nominal typing)
 - [ ] T2 `TypedDict`, `Literal`, `overload`, `NewType`
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 32 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 33 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._

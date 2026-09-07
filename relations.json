@@ -36,6 +36,11 @@
       "kind": "related"
     },
     {
+      "a": "python/16_walrus_operator",
+      "b": "python/17_match_case_pattern_matching",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
