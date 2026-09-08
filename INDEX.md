@@ -146,7 +146,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 exception chaining via `initCause`/constructor, preserving root cause across layers
 
 ### G. Modern language features (8 → 21)
-- [ ] T1 `var` local type inference — where it helps vs hurts readability
+- [x] T1 `var` local type inference — where it helps vs hurts readability → `java/17_var_type_inference.ipynb`
 - [ ] T1 switch expressions + pattern matching for switch, `sealed` classes/interfaces (Java 17/21) working together
 - [ ] T1 text blocks (`"""`), record patterns / deconstruction (Java 21)
 - [ ] T2 `instanceof` pattern matching (no more manual cast)
@@ -170,4 +170,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 33 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 34 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
