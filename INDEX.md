@@ -46,18 +46,20 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 `@property`, `@staticmethod`, `@classmethod` — and the descriptor protocol underneath all three → `python/11_property_staticmethod_classmethod_descriptors.ipynb`
 - [x] T1 `__eq__`/`__hash__` contract — why overriding one without the other breaks sets/dicts → `python/12_eq_hash_contract.ipynb`
 - [x] T1 `__repr__` vs `__str__`, and why every class should define `__repr__` → `python/13_repr_vs_str.ipynb`
+- [ ] T1 why a `list` can't be a dict/set key — hashability requires immutability, and a tuple is only hashable if everything inside it is too
 - [x] T1 context managers: `__enter__`/`__exit__`, `contextlib.contextmanager`, `ExitStack` → `python/14_context_managers.ipynb`
 - [x] T1 dataclasses: `field(default_factory=...)`, `__post_init__`, `frozen=True`, generated `__eq__`/`__order__` → `python/15_dataclasses.ipynb`
 - [ ] T2 MRO / C3 linearization, cooperative `super()` in multiple inheritance (diamond problem)
 - [ ] T2 `__getattr__` vs `__getattribute__` vs `__setattr__`, attribute lookup order
 - [ ] T2 abstract base classes (`abc.ABC`, `@abstractmethod`), `__subclasshook__` / virtual subclassing
+- [ ] T2 `functools.total_ordering` — deriving comparisons from `__eq__` + one ordering method, and the real dispatch-overhead cost vs hand-writing all six
 - [ ] T3 metaclasses: `type()` as a class factory, custom `__new__` on a metaclass, `__init_subclass__` as the lightweight alternative
 - [ ] T3 `__class_getitem__` (what makes `list[int]` work at runtime)
 
 ### E. Typing & modern syntax
 - [x] T1 walrus operator `:=` and where it actually improves code → `python/16_walrus_operator.ipynb`
 - [x] T1 `match`/`case` structural pattern matching (PEP 634), including guard clauses and class patterns → `python/17_match_case_pattern_matching.ipynb`
-- [ ] T1 f-string `=` debug specifier and the format-spec mini-language
+- [x] T1 f-string `=` debug specifier and the format-spec mini-language → `python/18_fstring_debug_format_spec.ipynb`
 - [ ] T2 `Protocol` (structural typing, PEP 544) vs ABC (nominal typing)
 - [ ] T2 `TypedDict`, `Literal`, `overload`, `NewType`
 - [ ] T2 generics: legacy `TypeVar`/`Generic` vs PEP 695 syntax (`class Foo[T]:`, Python 3.12+)
@@ -72,6 +74,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 PEP 703 free-threaded CPython (3.13+, GIL-optional build) — what changes
 
 ### G. Error handling
+- [ ] T1 `assert` pitfalls — the always-truthy `assert (x, "msg")` tuple bug, and why `-O` strips assertions entirely
 - [ ] T1 exception chaining: `raise X from Y`, `__cause__` vs implicit `__context__`
 - [ ] T1 `try`/`except`/`else`/`finally` — what `else` is actually for, `finally` overriding a `return`
 - [ ] T2 exception groups & `except*` (PEP 654, Python 3.11)
@@ -91,10 +94,17 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T1 `collections`: `Counter`, `defaultdict`, `deque` (O(1) both ends vs list's O(n) `insert(0,...)`), `ChainMap`
 - [ ] T1 `enum`: `auto()`, `Flag` (bitwise combos), `StrEnum`/`IntEnum`
 - [ ] T2 `functools.cached_property` vs `property` vs plain attribute
+- [ ] T2 `sorted()`/`list.sort()` are guaranteed stable, and the multi-pass stable-sort technique it enables
 - [ ] T2 `bisect` and `heapq` for the algorithms people hand-roll unnecessarily
 - [ ] T2 `pathlib` vs `os.path`
 - [ ] T3 `contextvars` (what actually backs async-safe "thread-local"-like state)
 - [ ] T3 `array` module vs `list` (packed C types, memory)
+- [ ] T2 `zoneinfo` (PEP 615) — DST-aware timezones from the system's own IANA database, ambiguous/nonexistent local times, and `fold`
+- [ ] T1 `str` vs `bytes`, encode/decode, and why the wrong encoding usually corrupts silently instead of raising
+- [ ] T2 `random` module: global vs isolated `Random` instances, seed reproducibility, and why `secrets` exists for anything security-sensitive
+- [ ] T2 `logging` gotchas — root logger's default WARNING level, `basicConfig`'s one-shot behavior, duplicate lines from propagation
+- [ ] T2 `s += x` in a loop: CPython's refcount-triggered in-place resize optimization, why it's fragile, and why `join()` stays the correct default
+- [ ] T2 f-strings force logging's expensive formatting to happen eagerly, even when the message gets filtered out
 
 ---
 
@@ -103,7 +113,9 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### A. Object model, identity & memory
 - [x] T1 `==` vs `.equals()`, the `String` pool and `.intern()` → `java/01_equals_vs_eq_string_pool.ipynb`
 - [x] T1 `Integer` autoboxing cache (-128..127) — the `==` gotcha with boxed types → `java/02_integer_autobox_cache.ipynb`
+- [ ] T1 the ternary-operator autoboxing NPE — mixing a primitive and a boxed operand forces numeric promotion on the whole expression, unboxing whichever branch is actually selected
 - [x] T1 `hashCode`/`equals` contract, `Objects.hash`/`Objects.equals`, what breaks in a `HashMap` if you violate it → `java/03_hashcode_equals_contract.ipynb`
+- [ ] T1 arrays don't override `equals`/`hashCode` (identity-based) — a silent `HashMap`/`HashSet` key trap, and why `Arrays.equals`/`deepEquals` exist
 - [x] T1 records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation → `java/04_records_basics.ipynb`
 - [ ] T2 `final` vs true immutability, "effectively final" for lambda capture
 - [ ] T2 defensive copying, why `clone()` is mostly a mistake, copy constructors as the idiom
@@ -114,6 +126,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 bounded wildcards, PECS ("producer extends, consumer super") → `java/06_bounded_wildcards_pecs.ipynb`
 - [ ] T2 unchecked warnings, heap pollution with varargs + generics
 - [ ] T3 generic method type inference edge cases (target typing)
+- [ ] T2 varargs overload resolution — fixed-arity always preferred, and passing an array directly reuses it instead of wrapping it
 
 ### C. Collections framework
 - [x] T1 `List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts → `java/07_immutable_collections.ipynb`
@@ -138,12 +151,14 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T2 `ThreadLocal` and the classic thread-pool memory leak
 - [ ] T2 atomic classes (`AtomicInteger`, CAS) vs synchronized for simple counters
 - [ ] T3 Java Memory Model happens-before relationships (what actually guarantees visibility across threads)
+- [ ] T2 `Random` vs `ThreadLocalRandom` — real contention on a shared `Random` instance under concurrent load, and why `SecureRandom` exists for anything security-sensitive
 
 ### F. Exceptions
 - [x] T1 checked vs unchecked exceptions — the actual compiler-enforced difference → `java/15_checked_unchecked_exceptions.ipynb`
 - [x] T1 try-with-resources, `AutoCloseable`, suppressed exceptions → `java/16_try_with_resources.ipynb`
 - [ ] T2 `finally` silently swallowing a `return`/exception from `try` (the gotcha, deliberately shown)
 - [ ] T3 exception chaining via `initCause`/constructor, preserving root cause across layers
+- [ ] T1 `assert` is disabled by default (needs `-ea`), and `AssertionError` extends `Error`, not `Exception`
 
 ### G. Modern language features (8 → 21)
 - [x] T1 `var` local type inference — where it helps vs hurts readability → `java/17_var_type_inference.ipynb`
@@ -151,6 +166,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T1 text blocks (`"""`), record patterns / deconstruction (Java 21)
 - [ ] T2 `instanceof` pattern matching (no more manual cast)
 - [ ] T2 helpful NullPointerException messages (Java 14+) — reading them to pinpoint the null in a chain
+- [ ] T1 default & static interface methods, and the diamond default-method conflict the compiler forces you to resolve via `InterfaceName.super.method()`
 
 ### H. JVM internals
 - [ ] T2 bytecode basics via `javap -c` — seeing what a for-loop / autobox / lambda actually compiles to
@@ -165,9 +181,13 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T2 static/instance initializer blocks — actual execution order with inheritance
 - [ ] T2 nested vs inner vs local vs anonymous classes — which ones capture an enclosing instance
 - [ ] T3 `String` concatenation compiler rewriting (`StringBuilder` insertion, `invokedynamic` on newer javac)
+- [ ] T2 NIO.2 (`Path`/`Files`) vs legacy `java.io.File` — real checked exceptions vs silent `false`/`null` returns
+- [ ] T2 `char` as a UTF-16 code unit, not a character — surrogate pairs, `codePointAt`/`codePoints()`, and truncation splitting a character in half
+- [ ] T1 `s += x` in a loop is unconditionally O(n²) in Java — no refcount-style escape hatch, `StringBuilder` is the only genuinely linear option
+- [ ] T2 `java.util.logging`'s `Supplier<String>` overloads — genuinely deferred logging, not just deferred formatting
 
 ---
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 34 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 35 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
