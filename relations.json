@@ -91,6 +91,11 @@
       "kind": "related"
     },
     {
+      "a": "java/17_var_type_inference",
+      "b": "java/18_switch_pattern_matching_sealed",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
@@ -125,6 +130,12 @@
       "b": "java/04_records_basics",
       "kind": "compare",
       "label": "Boilerplate-free value classes with generated equals/hashCode"
+    },
+    {
+      "a": "python/17_match_case_pattern_matching",
+      "b": "java/18_switch_pattern_matching_sealed",
+      "kind": "compare",
+      "label": "Structural pattern matching in a control-flow statement"
     }
   ]
 }
