@@ -67,7 +67,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 dict insertion-order guarantee (language spec since 3.7, not an implementation accident)
 
 ### F. Concurrency & parallelism
-- [ ] T1 what the GIL actually protects (bytecode-level atomicity) and what it doesn't (compound operations like `x += 1`)
+- [x] T1 what the GIL actually protects (bytecode-level atomicity) and what it doesn't (compound operations like `x += 1`) → `python/19_gil_atomicity.ipynb`
 - [ ] T1 threading vs multiprocessing vs asyncio — when each one actually helps given the GIL
 - [ ] T2 asyncio: event loop, `Task` vs coroutine object, `gather` vs `wait`, cancellation
 - [ ] T2 `concurrent.futures` (ThreadPoolExecutor/ProcessPoolExecutor)
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 36 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 37 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
