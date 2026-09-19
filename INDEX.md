@@ -163,7 +163,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### G. Modern language features (8 → 21)
 - [x] T1 `var` local type inference — where it helps vs hurts readability → `java/17_var_type_inference.ipynb`
 - [x] T1 switch expressions + pattern matching for switch, `sealed` classes/interfaces (Java 17/21) working together → `java/18_switch_pattern_matching_sealed.ipynb`
-- [ ] T1 text blocks (`"""`), record patterns / deconstruction (Java 21)
+- [x] T1 text blocks (`"""`), record patterns / deconstruction (Java 21) → `java/19_text_blocks.ipynb`
 - [ ] T2 `instanceof` pattern matching (no more manual cast)
 - [ ] T2 helpful NullPointerException messages (Java 14+) — reading them to pinpoint the null in a chain
 - [ ] T1 default & static interface methods, and the diamond default-method conflict the compiler forces you to resolve via `InterfaceName.super.method()`
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 37 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 38 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
