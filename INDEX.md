@@ -177,7 +177,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### I. Modules & misc stdlib
 - [ ] T2 JPMS basics (`module-info.java`, classpath vs modulepath) — enough to read a modular project
-- [ ] T1 `java.time` (`Instant`, `LocalDate`, `Duration`, `Period`) vs legacy `Date`/`Calendar`
+- [x] T1 `java.time` (`Instant`, `LocalDate`, `Duration`, `Period`) vs legacy `Date`/`Calendar` → `java/20_java_time.ipynb`
 - [ ] T2 static/instance initializer blocks — actual execution order with inheritance
 - [ ] T2 nested vs inner vs local vs anonymous classes — which ones capture an enclosing instance
 - [ ] T3 `String` concatenation compiler rewriting (`StringBuilder` insertion, `invokedynamic` on newer javac)
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 38 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 39 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
