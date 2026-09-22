@@ -41,6 +41,11 @@
       "kind": "related"
     },
     {
+      "a": "python/19_gil_atomicity",
+      "b": "python/20_threading_vs_multiprocessing_vs_asyncio",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
