@@ -75,7 +75,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### G. Error handling
 - [ ] T1 `assert` pitfalls — the always-truthy `assert (x, "msg")` tuple bug, and why `-O` strips assertions entirely
-- [ ] T1 exception chaining: `raise X from Y`, `__cause__` vs implicit `__context__`
+- [x] T1 exception chaining: `raise X from Y`, `__cause__` vs implicit `__context__` → `python/21_exception_chaining.ipynb`
 - [ ] T1 `try`/`except`/`else`/`finally` — what `else` is actually for, `finally` overriding a `return`
 - [ ] T2 exception groups & `except*` (PEP 654, Python 3.11)
 - [ ] T2 custom exception hierarchies, catching by base class deliberately
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 40 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 41 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
