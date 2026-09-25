@@ -101,6 +101,11 @@
       "kind": "related"
     },
     {
+      "a": "java/21_final_vs_immutability",
+      "b": "java/22_defensive_copying",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",

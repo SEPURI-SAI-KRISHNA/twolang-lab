@@ -118,7 +118,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T1 arrays don't override `equals`/`hashCode` (identity-based) — a silent `HashMap`/`HashSet` key trap, and why `Arrays.equals`/`deepEquals` exist
 - [x] T1 records (Java 16+): compact constructors, auto-generated `equals`/`hashCode`/`toString`, canonical constructor validation → `java/04_records_basics.ipynb`
 - [x] T2 `final` vs true immutability, "effectively final" for lambda capture → `java/21_final_vs_immutability.ipynb`
-- [ ] T2 defensive copying, why `clone()` is mostly a mistake, copy constructors as the idiom
+- [x] T2 defensive copying, why `clone()` is mostly a mistake, copy constructors as the idiom → `java/22_defensive_copying.ipynb`
 - [ ] T3 object header overhead (JOL-style), why a `Boolean` isn't 1 bit
 
 ### B. Generics
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 42 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 43 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
