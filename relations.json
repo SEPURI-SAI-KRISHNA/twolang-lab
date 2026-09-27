@@ -46,6 +46,11 @@
       "kind": "related"
     },
     {
+      "a": "python/21_exception_chaining",
+      "b": "python/22_try_except_else_finally",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
@@ -146,6 +151,12 @@
       "b": "java/18_switch_pattern_matching_sealed",
       "kind": "compare",
       "label": "Structural pattern matching in a control-flow statement"
+    },
+    {
+      "a": "python/22_try_except_else_finally",
+      "b": "java/16_try_with_resources",
+      "kind": "compare",
+      "label": "What happens to an in-flight exception during cleanup"
     }
   ]
 }
