@@ -81,7 +81,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T2 custom exception hierarchies, catching by base class deliberately
 
 ### H. Imports & packaging
-- [ ] T1 `sys.modules` as the import cache, why circular imports fail the way they do
+- [x] T1 `sys.modules` as the import cache, why circular imports fail the way they do → `python/23_sys_modules_import_cache.ipynb`
 - [ ] T2 `__all__`, namespace packages, relative vs absolute imports
 - [ ] T3 `importlib` machinery — finders, loaders, and what `import` desugars to
 
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 44 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 45 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
