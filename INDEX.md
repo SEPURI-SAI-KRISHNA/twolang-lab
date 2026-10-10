@@ -91,7 +91,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [ ] T3 peephole/constant-folding optimizations, why `is` "works" on small literals but you shouldn't rely on it
 
 ### J. Stdlib gems
-- [ ] T1 `collections`: `Counter`, `defaultdict`, `deque` (O(1) both ends vs list's O(n) `insert(0,...)`), `ChainMap`
+- [x] T1 `collections`: `Counter`, `defaultdict`, `deque` (O(1) both ends vs list's O(n) `insert(0,...)`), `ChainMap` → `python/24_collections_module.ipynb`
 - [ ] T1 `enum`: `auto()`, `Flag` (bitwise combos), `StrEnum`/`IntEnum`
 - [ ] T2 `functools.cached_property` vs `property` vs plain attribute
 - [ ] T2 `sorted()`/`list.sort()` are guaranteed stable, and the multi-pass stable-sort technique it enables
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 46 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 47 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
