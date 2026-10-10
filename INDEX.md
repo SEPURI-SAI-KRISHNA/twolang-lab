@@ -124,7 +124,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 ### B. Generics
 - [x] T1 type erasure — why you can't do `new T[]` or `instanceof List<String>` → `java/05_type_erasure.ipynb`
 - [x] T1 bounded wildcards, PECS ("producer extends, consumer super") → `java/06_bounded_wildcards_pecs.ipynb`
-- [ ] T2 unchecked warnings, heap pollution with varargs + generics
+- [x] T2 unchecked warnings, heap pollution with varargs + generics → `java/23_unchecked_heap_pollution.ipynb`
 - [ ] T3 generic method type inference edge cases (target typing)
 - [ ] T2 varargs overload resolution — fixed-arity always preferred, and passing an array directly reuses it instead of wrapping it
 
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 45 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 46 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
