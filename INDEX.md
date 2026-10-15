@@ -132,7 +132,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 `List.of()`/`Map.of()` immutability → `UnsupportedOperationException` on mutation attempts → `java/07_immutable_collections.ipynb`
 - [x] T1 fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`) → `java/08_fail_fast_iterators_cme.ipynb`
 - [x] T1 `Comparable` vs `Comparator`, `Comparator.comparing(...).thenComparing(...)` chains → `java/09_comparable_vs_comparator.ipynb`
-- [ ] T2 `HashMap` vs `LinkedHashMap` (access-order mode!) vs `TreeMap` ordering guarantees
+- [x] T2 `HashMap` vs `LinkedHashMap` (access-order mode!) vs `TreeMap` ordering guarantees → `java/24_map_ordering.ipynb`
 - [ ] T2 `Collectors`: `groupingBy`, `partitioningBy`, `teeing`, `toUnmodifiableList`
 - [ ] T3 `EnumMap`/`EnumSet` — why they're meaningfully faster than generic collections for enum keys
 
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 47 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 48 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
