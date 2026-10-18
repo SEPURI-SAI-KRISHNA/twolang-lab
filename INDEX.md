@@ -18,7 +18,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 `is` vs `==`, small-int cache (-5..256), string interning rules and when they silently stop applying → `python/01_identity_smallint_string_interning.ipynb`
 - [x] T1 mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time) → `python/02_mutable_default_argument.ipynb`
 - [x] T1 shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__` → `python/03_shallow_vs_deep_copy.ipynb`
-- [ ] T2 `__slots__`: memory savings, what you lose (no `__dict__`, no multiple inheritance of slotted classes without care)
+- [x] T2 `__slots__`: memory savings, what you lose (no `__dict__`, no multiple inheritance of slotted classes without care) → `python/26_slots.ipynb`
 - [ ] T2 reference counting + generational cyclic GC (`gc` module, generations, thresholds)
 - [ ] T2 weak references (`weakref`) and why caches/observers use them
 - [ ] T3 `sys.getsizeof` and real object overhead (header bytes, why an empty list isn't 0 bytes)
@@ -140,7 +140,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 stream laziness — nothing runs until a terminal operation, short-circuiting with `findFirst`/`anyMatch` → `java/10_stream_laziness.ipynb`
 - [x] T1 `Optional` — `orElse` (always evaluated) vs `orElseGet` (lazy), and why `Optional` fields are an anti-pattern → `java/11_optional_orelse_vs_orelseget.ipynb`
 - [x] T1 method references, all four kinds (static, bound instance, unbound instance, constructor) → `java/12_method_references.ipynb`
-- [ ] T2 functional interface composition: `Function.andThen`/`compose`, `Predicate.and`/`or`/`negate`
+- [x] T2 functional interface composition: `Function.andThen`/`compose`, `Predicate.and`/`or`/`negate` → `java/26_functional_composition.ipynb`
 - [ ] T2 parallel streams: common `ForkJoinPool`, when it helps vs silently hurts, ordering pitfalls
 - [ ] T3 stateful lambdas in streams (mutating external state) and why it silently breaks under parallel
 
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 50 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 52 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
