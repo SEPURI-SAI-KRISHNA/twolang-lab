@@ -92,7 +92,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ### J. Stdlib gems
 - [x] T1 `collections`: `Counter`, `defaultdict`, `deque` (O(1) both ends vs list's O(n) `insert(0,...)`), `ChainMap` → `python/24_collections_module.ipynb`
-- [ ] T1 `enum`: `auto()`, `Flag` (bitwise combos), `StrEnum`/`IntEnum`
+- [x] T1 `enum`: `auto()`, `Flag` (bitwise combos), `StrEnum`/`IntEnum` → `python/25_enum_module.ipynb`
 - [ ] T2 `functools.cached_property` vs `property` vs plain attribute
 - [ ] T2 `sorted()`/`list.sort()` are guaranteed stable, and the multi-pass stable-sort technique it enables
 - [ ] T2 `bisect` and `heapq` for the algorithms people hand-roll unnecessarily
@@ -133,7 +133,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 fail-fast iterators → `ConcurrentModificationException` vs fail-safe (`CopyOnWriteArrayList`) → `java/08_fail_fast_iterators_cme.ipynb`
 - [x] T1 `Comparable` vs `Comparator`, `Comparator.comparing(...).thenComparing(...)` chains → `java/09_comparable_vs_comparator.ipynb`
 - [x] T2 `HashMap` vs `LinkedHashMap` (access-order mode!) vs `TreeMap` ordering guarantees → `java/24_map_ordering.ipynb`
-- [ ] T2 `Collectors`: `groupingBy`, `partitioningBy`, `teeing`, `toUnmodifiableList`
+- [x] T2 `Collectors`: `groupingBy`, `partitioningBy`, `teeing`, `toUnmodifiableList` → `java/25_collectors.ipynb`
 - [ ] T3 `EnumMap`/`EnumSet` — why they're meaningfully faster than generic collections for enum keys
 
 ### D. Streams & functional interfaces
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 48 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 50 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
