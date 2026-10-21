@@ -19,7 +19,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 mutable default argument gotcha (`def f(x=[])`) and why it happens (defaults bound once at def-time) → `python/02_mutable_default_argument.ipynb`
 - [x] T1 shallow vs deep copy (`copy.copy` / `copy.deepcopy`), `__copy__`/`__deepcopy__` → `python/03_shallow_vs_deep_copy.ipynb`
 - [x] T2 `__slots__`: memory savings, what you lose (no `__dict__`, no multiple inheritance of slotted classes without care) → `python/26_slots.ipynb`
-- [ ] T2 reference counting + generational cyclic GC (`gc` module, generations, thresholds)
+- [x] T2 reference counting + generational cyclic GC (`gc` module, generations, thresholds) → `python/27_refcounting_gc.ipynb`
 - [ ] T2 weak references (`weakref`) and why caches/observers use them
 - [ ] T3 `sys.getsizeof` and real object overhead (header bytes, why an empty list isn't 0 bytes)
 - [ ] T3 `id()` reuse after garbage collection — the classic "why do two different objects have the same id" trap
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 53 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 54 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
