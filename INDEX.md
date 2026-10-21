@@ -141,7 +141,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 `Optional` — `orElse` (always evaluated) vs `orElseGet` (lazy), and why `Optional` fields are an anti-pattern → `java/11_optional_orelse_vs_orelseget.ipynb`
 - [x] T1 method references, all four kinds (static, bound instance, unbound instance, constructor) → `java/12_method_references.ipynb`
 - [x] T2 functional interface composition: `Function.andThen`/`compose`, `Predicate.and`/`or`/`negate` → `java/26_functional_composition.ipynb`
-- [ ] T2 parallel streams: common `ForkJoinPool`, when it helps vs silently hurts, ordering pitfalls
+- [x] T2 parallel streams: common `ForkJoinPool`, when it helps vs silently hurts, ordering pitfalls → `java/27_parallel_streams.ipynb`
 - [ ] T3 stateful lambdas in streams (mutating external state) and why it silently breaks under parallel
 
 ### E. Concurrency
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 52 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 53 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
