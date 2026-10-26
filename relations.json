@@ -51,6 +51,11 @@
       "kind": "related"
     },
     {
+      "a": "python/27_refcounting_gc",
+      "b": "python/28_weak_references",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
