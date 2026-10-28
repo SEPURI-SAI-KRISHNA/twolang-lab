@@ -56,6 +56,11 @@
       "kind": "related"
     },
     {
+      "a": "python/29_yield_from_send_throw_close",
+      "b": "python/06_generators_basics",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"

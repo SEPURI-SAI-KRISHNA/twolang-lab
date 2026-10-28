@@ -28,7 +28,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 dict/set size cannot change during iteration → `RuntimeError` (version tag mechanism), but *values* can change → `python/04_dict_set_mutation_during_iteration.ipynb`
 - [x] T1 iterator protocol (`__iter__`/`__next__`) vs iterable, and why `for` calls `iter()` once → `python/05_iterator_protocol.ipynb`
 - [x] T1 generators: `yield`, laziness, one-shot exhaustion, generator expressions vs list comps (memory) → `python/06_generators_basics.ipynb`
-- [ ] T2 `yield from`, delegation, and generator `send()` / `throw()` / `close()`
+- [x] T2 `yield from`, delegation, and generator `send()` / `throw()` / `close()` → `python/29_yield_from_send_throw_close.ipynb`
 - [ ] T2 `itertools` deep-dive: `islice`, `tee`, `groupby` (needs sorted input!), `chain`, `accumulate`, `pairwise`
 - [ ] T2 PEP 479: `StopIteration` raised inside a generator becomes `RuntimeError`, not silent stop
 - [ ] T3 async generators / `__aiter__`/`__anext__` vs regular generators
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 57 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 58 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
