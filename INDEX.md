@@ -149,7 +149,7 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 - [x] T1 virtual threads (Project Loom, Java 21) vs platform threads — what actually changes → `java/14_virtual_threads.ipynb`
 - [x] T2 `CompletableFuture` chaining (`thenApply`/`thenCompose`/`thenCombine`), sync vs async variants → `java/28_completablefuture.ipynb`
 - [x] T2 `ThreadLocal` and the classic thread-pool memory leak → `java/29_threadlocal.ipynb`
-- [ ] T2 atomic classes (`AtomicInteger`, CAS) vs synchronized for simple counters
+- [x] T2 atomic classes (`AtomicInteger`, CAS) vs synchronized for simple counters → `java/30_atomic_classes.ipynb`
 - [ ] T3 Java Memory Model happens-before relationships (what actually guarantees visibility across threads)
 - [ ] T2 `Random` vs `ThreadLocalRandom` — real contention on a shared `Random` instance under concurrent load, and why `SecureRandom` exists for anything security-sensitive
 
@@ -190,4 +190,4 @@ Status key: `[ ]` not started · `[~]` in progress · `[x]` done (notebook exist
 
 ## Progress log
 
-_This is a snapshot of an actively-growing index. 58 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._
+_This is a snapshot of an actively-growing index. 59 of the full set of topics are released so far; more land incrementally. Full batch-by-batch history isn't published yet to avoid spoiling what's coming._

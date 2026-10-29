@@ -146,6 +146,16 @@
       "kind": "related"
     },
     {
+      "a": "java/29_threadlocal",
+      "b": "java/30_atomic_classes",
+      "kind": "related"
+    },
+    {
+      "a": "java/30_atomic_classes",
+      "b": "java/13_synchronized_volatile",
+      "kind": "related"
+    },
+    {
       "a": "python/01_identity_smallint_string_interning",
       "b": "java/01_equals_vs_eq_string_pool",
       "kind": "compare",
