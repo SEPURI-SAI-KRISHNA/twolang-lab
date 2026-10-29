@@ -61,6 +61,11 @@
       "kind": "related"
     },
     {
+      "a": "python/30_itertools_deep_dive",
+      "b": "python/06_generators_basics",
+      "kind": "related"
+    },
+    {
       "a": "java/01_equals_vs_eq_string_pool",
       "b": "java/02_integer_autobox_cache",
       "kind": "related"
